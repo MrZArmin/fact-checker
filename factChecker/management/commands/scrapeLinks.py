@@ -71,7 +71,8 @@ class Command(BaseCommand):
         
         service = Service("/usr/local/bin/chromedriver")
         driver = webdriver.Chrome(service=service, options=options)
-        return webdriver.Chrome(options=options)
+        print("Driver initialized")
+        return driver
     
     def login(self, driver: webdriver.Chrome):
         wait = WebDriverWait(driver, 10)
@@ -124,7 +125,7 @@ class Command(BaseCommand):
             'lead': lead,
             'text': text,
             'link': link,
-            'iptc_codes': keywords
+            'keywords': keywords
         }
 
     def extract_keywords(self, keyword_buttons):
@@ -160,6 +161,6 @@ class Command(BaseCommand):
             )
             ArticleKeyword.objects.create(
                 article=article,
-                iptc_code=keyword,
+                keyword=keyword,
                 weight=keyword['weight']
             )
