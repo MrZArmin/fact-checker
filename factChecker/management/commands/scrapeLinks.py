@@ -91,11 +91,12 @@ class Command(BaseCommand):
         end_input.clear()
         end_input.send_keys("2015.01.01.")
 
-    def return_shadow_root(self, xpath: str):
-        wait = WebDriverWait(self.driver, 20)
+    def return_shadow_root(self, driver: webdriver.Chrome, xpath: str) -> webdriver.Chrome:
+        wait = WebDriverWait(driver, 10)
         shadow_host = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-        shadow_root = self.driver.execute_script('return arguments[0].shadowRoot', shadow_host)
+        shadow_root = driver.execute_script('return arguments[0].shadowRoot', shadow_host)
         return shadow_root
+
     
     def get_number_of_news(self) -> int:
         time.sleep(2)
