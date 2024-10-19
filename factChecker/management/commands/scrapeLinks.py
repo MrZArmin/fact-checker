@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.utils.dateparse import parse_date
-from models import Link, Article, ArticleKeyword, Keyword
+from factChecker.models import Link, Article, ArticleKeyword, Keyword
 
 MAX_WORKERS = 5
 
