@@ -29,7 +29,7 @@ class Command(BaseCommand):
             self.login_to_filter_page()
 
             # Apply filter after logging in
-            self.apply_filter("2014.01.01.", "2015.01.01.")
+            self.apply_filter(self.driver, "2014.01.01.", "2015.01.01.")
 
             total_links = self.get_number_of_news()
             self.stdout.write(self.style.SUCCESS(f"Total links to scrape: {total_links}"))
