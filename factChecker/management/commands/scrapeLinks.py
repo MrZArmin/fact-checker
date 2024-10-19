@@ -28,6 +28,9 @@ class Command(BaseCommand):
             self.driver = self.initialize_driver()
             self.login_to_filter_page()
 
+            # Apply filter after logging in
+            self.apply_filter("2014.01.01.", "2015.01.01.")
+
             total_links = self.get_number_of_news()
             self.stdout.write(self.style.SUCCESS(f"Total links to scrape: {total_links}"))
 
@@ -70,7 +73,25 @@ class Command(BaseCommand):
         submit_btn.click()
         self.stdout.write(self.style.SUCCESS("Logged in"))
 
-    def return_shadow_root(self, xpath: str) -> webdriver.Chrome:
+    def apply_filter(self, driver: webdriver.Chrome, start_date: str, end_date: str):
+        shadow_root = self.return_shadow_root(driver, "/html/body/div[2]/mtva-hiradatbank")
+        wait = WebDriverWait(shadow_root, 10)
+
+        #apply filter
+        filters = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'ov_search_form_query_row_end')))
+        filter_btn = filters.find_elements(By.TAG_NAME, 'button')[1]
+        filter_btn.click()
+
+        start_input = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'ov_range_start_input input')))
+        driver.execute_script("arguments[0].value = '';", start_input)
+        start_input.send_keys(start_date)
+        
+        end_input_div = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'ov_range_end_input')))
+        end_input = end_input_div.find_element(By.TAG_NAME, 'input')
+        end_input.clear()
+        end_input.send_keys(end_date)
+
+    def return_shadow_root(self, xpath: str):
         wait = WebDriverWait(self.driver, 20)
         shadow_host = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
         shadow_root = self.driver.execute_script('return arguments[0].shadowRoot', shadow_host)
