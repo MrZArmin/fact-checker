@@ -89,6 +89,7 @@ class Command(BaseCommand):
         password_input.send_keys(password)
         submit_btn = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[2]/div/form/div[3]/div/input")
         submit_btn.click()
+        print("Logged in")
 
     def return_shadow_root(self, driver: webdriver.Chrome, xpath: str) -> webdriver.Chrome:
         wait = WebDriverWait(driver, 10)
@@ -101,7 +102,11 @@ class Command(BaseCommand):
         shadow_root = self.return_shadow_root(driver, "/html/body/div[2]/mtva-hiradatbank")
         wait = WebDriverWait(shadow_root, 10)
         
-        title = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "div[class^='_title']"))).text
+        try:
+            title = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "div[class^='_title']"))).text
+        except:
+            title = ""
+        
         tags = shadow_root.find_element(By.CSS_SELECTOR, "div[class^='_slug']").text if shadow_root.find_elements(By.CSS_SELECTOR, "div[class^='_slug']") else ""
         source = shadow_root.find_element(By.CSS_SELECTOR, "div[class^='_source']").text if shadow_root.find_elements(By.CSS_SELECTOR, "div[class^='_source']") else ""
         lead = shadow_root.find_element(By.CSS_SELECTOR, "div[class^='_lead']").text if shadow_root.find_elements(By.CSS_SELECTOR, "div[class^='_lead']") else ""
@@ -140,12 +145,12 @@ class Command(BaseCommand):
     @transaction.atomic
     def save_to_db(self, data: dict, link: Link):
         article = Article(
-            date=parse_date(data['date']),
-            tags=data['tags'],
-            title=data['title'],
-            lead=data['lead'],
-            text=data['text'],
-            link=data['link']
+            date=parse_date(data.get('date', '')),
+            tags=data.get('tags', ''),
+            title=data.get('title', ''),
+            lead=data.get('lead', ''),
+            text=data.get('text', ''),
+            link=data.get('link', '')
         )
         article.save()
         
@@ -153,14 +158,22 @@ class Command(BaseCommand):
         link.scraped = True
         link.save()
 
-        # Handle Keywords codes
-        for keyword in data['keywords']:
-            keyword, created = Keyword.objects.get_or_create(
-                name=keyword['name'],
-                defaults={'weight': keyword['weight']}
-            )
-            ArticleKeyword.objects.create(
-                article=article,
-                keyword=keyword,
-                weight=keyword['weight']
-            )
+        # Handle Keywords
+        for keyword_data in data.get('keywords', []):
+            if isinstance(keyword_data, dict):
+                name = keyword_data.get('name', '')
+                weight = keyword_data.get('weight', 0)
+            else:
+                # If keyword_data is not a dict, skip this iteration
+                continue
+
+            if name:
+                keyword_obj, created = Keyword.objects.get_or_create(
+                    name=name,
+                    defaults={'weight': weight}
+                )
+                ArticleKeyword.objects.create(
+                    article=article,
+                    keyword=keyword_obj,
+                    weight=weight
+                )
