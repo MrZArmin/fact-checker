@@ -9,7 +9,7 @@ class Article(models.Model):
     lead = models.TextField()
     text = models.TextField()
     keywords = models.ManyToManyField(Keyword, through='ArticleKeyword', related_name='articles')
-    link = models.URLField()
+    link = models.URLField(max_length=400)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
