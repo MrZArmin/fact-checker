@@ -14,6 +14,10 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        db_table = 'articles'
+        managed = True
 
 class ArticleKeyword(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
@@ -21,4 +25,5 @@ class ArticleKeyword(models.Model):
     weight = models.IntegerField(default=0)
 
     class Meta:
+        db_table = 'article_keywords'
         unique_together = ('article', 'keyword')
