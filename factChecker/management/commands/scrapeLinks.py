@@ -31,7 +31,7 @@ class Command(BaseCommand):
             # Apply filter after logging in
             self.apply_filter(self.driver)
 
-            total_links = self.get_number_of_news()
+            total_links = self.get_number_of_news(self.driver)
             self.stdout.write(self.style.SUCCESS(f"Total links to scrape: {total_links}"))
 
             self.get_news_links(total_links)
@@ -98,9 +98,9 @@ class Command(BaseCommand):
         return shadow_root
 
     
-    def get_number_of_news(self) -> int:
+    def get_number_of_news(self, driver: webdriver.Chrome) -> int:
         time.sleep(2)
-        shadow_root = self.return_shadow_root("/html/body/div[2]/mtva-hiradatbank")
+        shadow_root = self.return_shadow_root(driver, "/html/body/div[2]/mtva-hiradatbank")
         wait = WebDriverWait(shadow_root, 20)
         is_present = wait.until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'ov_header_title'),' találat'))
         if is_present:
