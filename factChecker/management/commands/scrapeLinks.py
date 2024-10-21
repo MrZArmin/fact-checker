@@ -116,7 +116,7 @@ class Command(BaseCommand):
 
         while processed_count < total_links:
             last_links_count = (len(current_links) - processed_count)
-            current_links = shadow_root.find_elements(By.CLASS_NAME, "ov_result_title_link")[:-last_links_count]
+            current_links = shadow_root.find_elements(By.CLASS_NAME, "ov_result_title_link")[-last_links_count:]
             current_links_href = [link.get_attribute("href") for link in current_links]
             
             
