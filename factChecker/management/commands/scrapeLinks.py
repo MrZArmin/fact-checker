@@ -84,7 +84,7 @@ class Command(BaseCommand):
 
         start_input = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'ov_range_start_input input')))
         driver.execute_script("arguments[0].value = '';", start_input)
-        start_input.send_keys("2014.01.01.")
+        start_input.send_keys("2014.12.20.")
         
         end_input_div = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'ov_range_end_input')))
         end_input = end_input_div.find_element(By.TAG_NAME, 'input')
