@@ -105,7 +105,9 @@ class Command(BaseCommand):
         is_present = wait.until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'ov_header_title'),' találat'))
         if is_present:
             number_of_news = shadow_root.find_element(By.CLASS_NAME,'ov_header_title').text
+            print(number_of_news + " he ehe he")
         number_of_news = number_of_news.split()[0]
+        print(number_of_news)
         return int(number_of_news.replace(',', ''))
 
     def get_news_links(self, driver: webdriver.Chrome, total_links: int):
