@@ -139,10 +139,10 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.WARNING(f"Failed to load more links: {str(e)}"))
                     break
 
-    @transaction.atomic
     def save_to_db(self, links: list):
         for url in links:
             try:
-                Link.objects.create(url=url, scraped=False)
+                with transaction.atomic():
+                    Link.objects.create(url=url, scraped=False)
             except IntegrityError:
-                pass
+                self.stdout.write(self.style.WARNING(f"Link {url} already exists in the database. Skipping..."))
