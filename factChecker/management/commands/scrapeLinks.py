@@ -105,12 +105,14 @@ class Command(BaseCommand):
         is_present = wait.until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'ov_header_title'),' találat'))
         if is_present:
             number_of_news = shadow_root.find_element(By.CLASS_NAME,'ov_header_title').text
-        number_of_news = number_of_news.split()[0]
-        return int(number_of_news.replace(',', ''))
+        parts = number_of_news.split()
+        result = ''.join([part for part in parts if part.isdigit()])
+        return int(result)
 
     def get_news_links(self, driver: webdriver.Chrome, total_links: int):
         shadow_root = self.return_shadow_root(driver, "/html/body/div[2]/mtva-hiradatbank")
         processed_count = 0
+        current_links = []
 
         while processed_count < total_links:
             last_links_count = (len(current_links) - processed_count)
