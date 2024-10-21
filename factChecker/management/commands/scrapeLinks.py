@@ -84,7 +84,7 @@ class Command(BaseCommand):
 
         start_input = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'ov_range_start_input input')))
         driver.execute_script("arguments[0].value = '';", start_input)
-        start_input.send_keys("2014.10.16.")
+        start_input.send_keys("2014.01.01.")
         
         end_input_div = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'ov_range_end_input')))
         end_input = end_input_div.find_element(By.TAG_NAME, 'input')
@@ -113,13 +113,15 @@ class Command(BaseCommand):
         processed_count = 0
 
         while processed_count < total_links:
-            current_links = shadow_root.find_elements(By.CLASS_NAME, "ov_result_title_link")
+            last_links_count = (len(current_links) - processed_count)
+            current_links = shadow_root.find_elements(By.CLASS_NAME, "ov_result_title_link")[:-last_links_count]
             current_links_href = [link.get_attribute("href") for link in current_links]
             
-            new_links = [link for link in current_links_href if link not in self.processed_links]
-            self.save_to_db(new_links)
-            self.processed_links.update(new_links)
-            processed_count += len(new_links)
+            
+            #new_links = [link for link in current_links_href if link not in self.processed_links]
+            self.save_to_db(current_links_href)
+            self.processed_links.update(current_links_href)
+            processed_count += len(current_links_href)
 
             self.stdout.write(self.style.SUCCESS(f"Processed {processed_count} out of {total_links} links"))
 
@@ -129,6 +131,7 @@ class Command(BaseCommand):
                         EC.element_to_be_clickable((By.CLASS_NAME, "ov__footer_long"))
                     )
                     self.driver.execute_script("arguments[0].scrollIntoView();", load_more_btn)
+                    WebDriverWait(self.driver, 30).until(EC.visibility_of(load_more_btn))
                     load_more_btn.click()
                 except Exception as e:
                     self.stdout.write(self.style.WARNING(f"Failed to load more links: {str(e)}"))
