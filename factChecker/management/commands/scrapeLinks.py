@@ -84,7 +84,7 @@ class Command(BaseCommand):
 
         start_input = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'ov_range_start_input input')))
         driver.execute_script("arguments[0].value = '';", start_input)
-        start_input.send_keys("2014.12.20.")
+        start_input.send_keys("2014.10.16.")
         
         end_input_div = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'ov_range_end_input')))
         end_input = end_input_div.find_element(By.TAG_NAME, 'input')
@@ -105,9 +105,7 @@ class Command(BaseCommand):
         is_present = wait.until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'ov_header_title'),' találat'))
         if is_present:
             number_of_news = shadow_root.find_element(By.CLASS_NAME,'ov_header_title').text
-            print(number_of_news + " he ehe he")
         number_of_news = number_of_news.split()[0]
-        print(number_of_news)
         return int(number_of_news.replace(',', ''))
 
     def get_news_links(self, driver: webdriver.Chrome, total_links: int):
