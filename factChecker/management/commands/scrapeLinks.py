@@ -34,7 +34,7 @@ class Command(BaseCommand):
             total_links = self.get_number_of_news(self.driver)
             self.stdout.write(self.style.SUCCESS(f"Total links to scrape: {total_links}"))
 
-            self.get_news_links(total_links)
+            self.get_news_links(self.driver, total_links)
             
             self.stdout.write(self.style.SUCCESS(f"Total unique links processed: {len(self.processed_links)}"))
         except Exception as e:
@@ -108,8 +108,8 @@ class Command(BaseCommand):
         number_of_news = number_of_news.split()[0]
         return int(number_of_news.replace(',', ''))
 
-    def get_news_links(self, total_links: int):
-        shadow_root = self.return_shadow_root("/html/body/div[2]/mtva-hiradatbank")
+    def get_news_links(self, driver: webdriver.Chrome, total_links: int):
+        shadow_root = self.return_shadow_root(driver, "/html/body/div[2]/mtva-hiradatbank")
         processed_count = 0
 
         while processed_count < total_links:
