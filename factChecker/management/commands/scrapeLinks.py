@@ -115,15 +115,16 @@ class Command(BaseCommand):
         current_links = []
 
         while processed_count < total_links:
-            last_links_count = (len(current_links) - processed_count)
-            current_links = shadow_root.find_elements(By.CLASS_NAME, "ov_result_title_link")[-last_links_count:]
+            current_links = shadow_root.find_elements(By.CLASS_NAME, "ov_result_title_link")[processed_count:]
             current_links_href = [link.get_attribute("href") for link in current_links]
             
+            self.stdout.write(self.style.SUCCESS(f"New links on page: {processed_count}"))
             
-            #new_links = [link for link in current_links_href if link not in self.processed_links]
-            self.save_to_db(current_links_href)
-            self.processed_links.update(current_links_href)
-            processed_count += len(current_links_href)
+            new_links = [link for link in current_links_href if link not in self.processed_links]
+            if new_links:
+                self.save_to_db(new_links)
+                self.processed_links.update(new_links)
+                processed_count += len(new_links)
 
             self.stdout.write(self.style.SUCCESS(f"Processed {processed_count} out of {total_links} links"))
 
