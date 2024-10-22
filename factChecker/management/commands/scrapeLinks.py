@@ -1,6 +1,7 @@
 import os
 import ssl
 import time
+import json
 from datetime import datetime, timedelta
 import concurrent.futures
 from typing import List, Tuple
@@ -22,23 +23,58 @@ class Command(BaseCommand):
         super().__init__(*args, **kwargs)
         self.NUM_DRIVERS = 10
         self.processed_links = set()
+        self.failed_ranges: Dict[str, List[str]] = {}
+        self.log_file = 'scraper_errors.json'
 
     def add_arguments(self, parser):
         parser.add_argument('year', type=int, help='Year to scrape')
+        parser.add_argument('--retry-only', action='store_true', 
+                          help='Only retry failed date ranges from the log file')
 
     def handle(self, *args, **options):
         load_dotenv()
         ssl._create_default_https_context = ssl._create_unverified_context
         
+        if options['retry_only']:
+            self.retry_failed_ranges()
+            return
+
         year = options['year']
         date_ranges = self.generate_date_ranges(year)
         
         self.stdout.write(self.style.SUCCESS(f"Generated {len(date_ranges)} date ranges for year {year}"))
         
-        with concurrent.futures.ThreadPoolExecutor(max_workers=self.NUM_DRIVERS) as executor:
-            executor.map(self.scrape_date_range, date_ranges)
+        # Clear any existing error log before starting
+        self.clear_error_log()
         
-        self.stdout.write(self.style.SUCCESS(f"Completed scraping for year {year}"))
+        with concurrent.futures.ThreadPoolExecutor(max_workers=self.NUM_DRIVERS) as executor:
+            futures = {executor.submit(self.scrape_date_range, date_range): date_range 
+                      for date_range in date_ranges}
+            
+            for future in concurrent.futures.as_completed(futures):
+                date_range = futures[future]
+                try:
+                    success = future.result()
+                    if not success:
+                        self.stdout.write(self.style.WARNING(
+                            f"Failed to process range {date_range[0]} - {date_range[1]}"
+                        ))
+                except Exception as e:
+                    self.stdout.write(self.style.ERROR(str(e)))
+        
+        # After all initial processing is done, retry failed ranges
+        self.retry_failed_ranges()
+        
+        # Final status report
+        remaining_failures = self.load_failed_ranges()
+        if remaining_failures:
+            self.stdout.write(self.style.WARNING(
+                f"Completed with {len(remaining_failures)} permanent failures. "
+                "Check scraper_errors.json for details."
+            ))
+        else:
+            self.stdout.write(self.style.SUCCESS("All date ranges processed successfully!"))
+
 
     def generate_date_ranges(self, year: int) -> List[Tuple[str, str]]:
         """Generate weekly date ranges for the given year."""
@@ -59,6 +95,16 @@ class Command(BaseCommand):
             
         return date_ranges
 
+    def load_failed_ranges(self) -> List[Tuple[str, str]]:
+        """Load failed date ranges from the log file."""
+        if not os.path.exists(self.log_file):
+            return []
+        
+        with open(self.log_file, 'r') as f:
+            data = json.load(f)
+            return [(range_data['start_date'], range_data['end_date']) 
+                   for range_data in data.get('failed_ranges', [])]
+
     def initialize_driver(self) -> webdriver.Chrome:
         """Initialize a Chrome driver with headless options."""
         options = webdriver.ChromeOptions()
@@ -72,8 +118,11 @@ class Command(BaseCommand):
         driver = webdriver.Chrome(service=service, options=options)
         return driver
 
-    def scrape_date_range(self, date_range: Tuple[str, str]) -> None:
-        """Scrape news links for a specific date range."""
+    def scrape_date_range(self, date_range: Tuple[str, str], is_retry: bool = False) -> bool:
+        """
+        Scrape news links for a specific date range.
+        Returns True if successful, False otherwise.
+        """
         driver = None
         try:
             driver = self.initialize_driver()
@@ -86,14 +135,67 @@ class Command(BaseCommand):
             ))
             
             self.get_news_links(driver, total_links)
+            return True
             
         except Exception as e:
-            self.stdout.write(self.style.ERROR(
-                f"Error processing range {date_range[0]} - {date_range[1]}: {str(e)}"
-            ))
+            error_msg = f"Error processing range {date_range[0]} - {date_range[1]}: {str(e)}"
+            self.stdout.write(self.style.ERROR(error_msg))
+            if not is_retry:
+                self.save_failed_range(date_range[0], date_range[1], str(e))
+            return False
         finally:
             if driver:
                 driver.quit()
+
+    def retry_failed_ranges(self):
+        """Retry all failed date ranges."""
+        failed_ranges = self.load_failed_ranges()
+        if not failed_ranges:
+            self.stdout.write(self.style.SUCCESS("No failed ranges to retry"))
+            return
+
+        self.stdout.write(self.style.SUCCESS(f"Retrying {len(failed_ranges)} failed ranges..."))
+        
+        # Clear the error log before retrying
+        self.clear_error_log()
+        
+        with concurrent.futures.ThreadPoolExecutor(max_workers=self.NUM_DRIVERS) as executor:
+            futures = {executor.submit(self.scrape_date_range, date_range, True): date_range 
+                      for date_range in failed_ranges}
+            
+            for future in concurrent.futures.as_completed(futures):
+                date_range = futures[future]
+                try:
+                    success = future.result()
+                    if not success:
+                        self.save_failed_range(date_range[0], date_range[1], "Retry failed")
+                except Exception as e:
+                    self.save_failed_range(date_range[0], date_range[1], str(e))
+        
+    def save_failed_range(self, start_date: str, end_date: str, error: str):
+        """Save failed date range to the log file."""
+        current_data = {'failed_ranges': []}
+        if os.path.exists(self.log_file):
+            with open(self.log_file, 'r') as f:
+                try:
+                    current_data = json.load(f)
+                except json.JSONDecodeError:
+                    pass
+
+        current_data['failed_ranges'].append({
+            'start_date': start_date,
+            'end_date': end_date,
+            'error': str(error),
+            'timestamp': datetime.now().isoformat()
+        })
+
+        with open(self.log_file, 'w') as f:
+            json.dump(current_data, f, indent=2)
+
+    def clear_error_log(self):
+        """Clear the error log file."""
+        if os.path.exists(self.log_file):
+            os.remove(self.log_file)
 
     def login_to_filter_page(self, driver: webdriver.Chrome):
         """Log in to the website."""
