@@ -25,6 +25,7 @@ class Command(BaseCommand):
         parsed_url = urlparse("postgresql://szakdoga:Kutyakutya1@localhost:5432/archivum")
         documents = self.fetch_documents_from_storage(query=query, parsed_url=parsed_url)
         print(f"Found {len(documents)} documents")
+        print('Last document:', documents[-1])
         self.save_embeddings(documents)
 
     def fetch_documents_from_storage(self, query: str, parsed_url) -> list[Document]:
@@ -42,9 +43,8 @@ class Command(BaseCommand):
     
     def save_embeddings(self, documents: list[Document]) -> None:
         for document in documents:
-
             # Get the article
-            article = Article.objects.get(id=document.id)
+            article = Article.objects.get(id=document.article_id)
 
             # Get the embedding
             embedding = EMBED_MODEL.embed(document.text)
