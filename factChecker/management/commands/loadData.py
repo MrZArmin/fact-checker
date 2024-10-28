@@ -3,11 +3,11 @@ from llama_index import (
     download_loader,
     Document,
 )
-from llama_index.embeddings import HuggingFaceEmbeddings
+from llama_index.embeddings import HuggingFaceEmbedding
 from django.core.management.base import BaseCommand
 from factChecker.models import Article
 
-EMBED_MODEL = HuggingFaceEmbeddings(
+EMBED_MODEL = HuggingFaceEmbedding(
     model_name="WhereIsAI/UAE-Large-V1", embed_batch_size=10  # open-source embedding model
 )
 
