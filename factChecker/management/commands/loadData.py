@@ -16,7 +16,7 @@ class Command(BaseCommand):
             LEFT JOIN article_keywords ak ON e.id = ak.article_id
         """
         # Use urlparse instead of argparse
-        parsed_url = urlparse("postgresql://szakdoga:r)<6!x5uJfaA?w@@localhost:5432/archivum")
+        parsed_url = urlparse("postgresql://szakdoga:Kutyakutya1@localhost:5432/archivum")
         documents = self.fetch_documents_from_storage(query=query, parsed_url=parsed_url)
         print(f"Found {len(documents)} documents")
 
