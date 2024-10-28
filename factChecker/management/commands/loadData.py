@@ -17,7 +17,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         query = f"""
-            SELECT e.text
+            SELECT e.text, e.id
             FROM articles e
             LEFT JOIN article_keywords ak ON e.id = ak.article_id
         """
@@ -44,7 +44,7 @@ class Command(BaseCommand):
     def save_embeddings(self, documents: list[Document]) -> None:
         for document in documents:
             # Get the article
-            article = Article.objects.get(id=document.id_)
+            article = Article.objects.get(id=document.metadata['id'])
 
             # Get the embedding
             embedding = EMBED_MODEL.embed(document.text)
