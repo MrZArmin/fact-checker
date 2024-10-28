@@ -1,4 +1,4 @@
-import argparse
+from urllib.parse import urlparse
 from llama_index import (
     download_loader,
     Document,
@@ -11,15 +11,15 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         query = f"""
-        SELECT e.text
-        FROM  articles e
-        LEFT JOIN article_keywords ak ON e.id = ak.article_id
+            SELECT e.text
+            FROM articles e
+            LEFT JOIN article_keywords ak ON e.id = ak.article_id
         """
-        parsed_url = argparse("postgresql://szakdoga:r)<6!x5uJfaA?w@@localhost:5432/archivum")
+        # Use urlparse instead of argparse
+        parsed_url = urlparse("postgresql://szakdoga:r)<6!x5uJfaA?w@@localhost:5432/archivum")
         documents = self.fetch_documents_from_storage(query=query, parsed_url=parsed_url)
-
         print(f"Found {len(documents)} documents")
-        
+
     def fetch_documents_from_storage(self, query: str, parsed_url) -> list[Document]:
         # Prep documents - fetch from DB
         DatabaseReader = download_loader("DatabaseReader")
