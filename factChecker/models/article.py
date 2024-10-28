@@ -1,5 +1,6 @@
 from django.db import models
 from .keyword import Keyword
+from pgvector.django import VectorField
 
 class Article(models.Model):
     id = models.AutoField(primary_key=True)
@@ -11,6 +12,7 @@ class Article(models.Model):
     keywords = models.ManyToManyField(Keyword, through='ArticleKeyword', related_name='articles')
     link = models.URLField(max_length=400)
     created_at = models.DateTimeField(auto_now_add=True)
+    embedding = VectorField(dimensions=1024, null=True)  # 1024-dimensional vector
 
     def __str__(self):
         return self.title
