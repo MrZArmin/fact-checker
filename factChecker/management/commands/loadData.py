@@ -44,6 +44,7 @@ class Command(BaseCommand):
     def save_embeddings(self, documents: list[Document]) -> None:
         for document in documents:
             # Get the article
+            print(document.metadata)
             article = Article.objects.get(id=document.metadata['id'])
 
             # Get the embedding
