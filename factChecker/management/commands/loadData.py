@@ -40,7 +40,7 @@ class Command(BaseCommand):
         )
         return reader.load_data(query=query)
     
-    def save_embeddings(documents: list[Document]) -> None:
+    def save_embeddings(self, documents: list[Document]) -> None:
         for document in documents:
 
             # Get the article
