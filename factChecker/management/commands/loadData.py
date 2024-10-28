@@ -45,7 +45,7 @@ class Command(BaseCommand):
         for document in documents:
             # Get the article
             print(document.metadata)
-            article = Article.objects.get(id=document.metadata['id'])
+            article = Article.objects.get(id=document.id)
 
             # Get the embedding
             embedding = EMBED_MODEL.embed(document.text)
