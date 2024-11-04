@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# Configuration
+REMOTE_HOST="root@zrinszki.hu"
+REMOTE_DIR="/data/szakdoga/fact-checker"
+VENV_NAME="venv"
+
+# Colors for output
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+echo -e "${GREEN}Starting deployment to ${REMOTE_HOST}:${REMOTE_DIR}${NC}"
+
+# Create exclude patterns file for rsync
+cat > .rsyncignore << EOL
+*.pyc
+__pycache__
+*.py[cod]
+*$py.class
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+/venv
+.vscode
+.idea
+.DS_Store
+.git
+.gitignore
+EOL
+
+# Sync project files using rsync
+echo "Syncing project files..."
+rsync -avz --progress \
+    --exclude-from='.rsyncignore' \
+    --delete \
+    ./ ${REMOTE_HOST}:${REMOTE_DIR}/
+
+# Remove temporary rsync ignore file
+rm .rsyncignore
+
+# Execute remote deployment steps
+
+# ssh ${REMOTE_HOST} << 'ENDSSH'
+#     # Navigate to project directory
+#     cd /data/szakdoga/fact-checker
+
+#     # Create virtual environment if it doesn't exist
+#     if [ ! -d "venv" ]; then
+#         echo "Creating virtual environment..."
+#         python3 -m venv venv
+#     fi
+
+#     # Activate virtual environment and install/update dependencies
+#     source venv/bin/activate
+    
+#     # Install/upgrade pip and required packages
+#     pip install --upgrade pip
+#     pip install -r requirements.txt
+
+#     # Run migrations
+#     echo "Applying database migrations..."
+#     python manage.py makemigrations
+#     python manage.py migrate --noinput
+
+#     # Check if gunicorn is installed, if not install it
+
+#     # Clear Python cache files
+#     find . -type d -name "__pycache__" -exec rm -r {} + 2>/dev/null || true
+#     find . -name "*.pyc" -delete
+
+#     echo "Deployment completed on server side!"
+# ENDSSH
+
+echo -e "${GREEN}Deployment completed successfully!${NC}"

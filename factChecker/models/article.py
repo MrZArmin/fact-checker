@@ -13,6 +13,7 @@ class Article(models.Model):
     link = models.URLField(max_length=400)
     created_at = models.DateTimeField(auto_now_add=True)
     embedding = VectorField(dimensions=1024, null=True)  # 1024-dimensional vector
+    embedding_openai = VectorField(dimensions=1536, null=True)
 
     def __str__(self):
         return self.title

@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('unscraped-links/', views.get_unscraped_links, name='unscraped_links'),
+    path('api/rag/query/', views.query_rag, name='query_rag'),
 ]
