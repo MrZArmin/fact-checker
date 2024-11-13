@@ -17,5 +17,3 @@ llama-index-llms-llama-cpp
 llama-index-readers-database
 llama-index-vector-stores-postgres
 vllm
-tqdm
-openai
