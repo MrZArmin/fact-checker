@@ -17,10 +17,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from factChecker import views
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+from factChecker.controllers.authController import login
+from factChecker.controllers.authController import me
+from factChecker.controllers.authController import logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('unscraped-links/', views.get_unscraped_links, name='unscraped_links'),
     path('api/rag/query/', views.query_rag, name='query_rag'),
+    path('login/', login, name='login'),
+    path('logout/', logout, name='logout'),
+    path('me/', me, name='me'),
 ]

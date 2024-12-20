@@ -1,0 +1,50 @@
+#!/bin/bash
+# Configuration
+REMOTE_HOST="root@zrinszki.hu"
+REMOTE_DIR="/www/fact-checker"
+VENV_NAME="venv"
+
+# Colors for output
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+echo -e "${GREEN}Starting live deployment to ${REMOTE_HOST}:${REMOTE_DIR}${NC}"
+
+# Create exclude patterns file for rsync
+cat > .rsyncignore << EOL
+*.pyc
+**pycache**
+*.py[cod]
+*$py.class
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+/venv
+.vscode
+.idea
+.DS_Store
+.git
+.gitignore
+/run
+EOL
+
+# Sync project files using rsync without --delete flag
+echo "Syncing project files..."
+rsync -avz --progress \
+--exclude-from='.rsyncignore' \
+./ ${REMOTE_HOST}:${REMOTE_DIR}/
+
+# Pip install requirements on remote
+echo "Installing requirements..."
+ssh ${REMOTE_HOST} "cd ${REMOTE_DIR} && source ${VENV_NAME}/bin/activate && pip install -r requirements.txt"
+
+# Remove temporary rsync ignore file
+rm .rsyncignore
+
+# Restart the fact-checker service
+echo "Restarting fact-checker service..."
+ssh ${REMOTE_HOST} "systemctl restart fact-checker"
+
+echo -e "${GREEN}Deployment completed successfully!${NC}"

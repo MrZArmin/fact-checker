@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-fm+ue3$w#h0%@_u*z4p1l32u%&oh!!ls(7^a_jbq44=@rl@p^!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fc.zrinszki.hu']
+ALLOWED_HOSTS = ['api.factchecker.hu', '127.0.0.1']
 
 
 # Application definition
@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pgvector.django',
     'factChecker',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -75,6 +77,54 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'szakdolgozat.wsgi.application'
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Vite default
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://factchecker.hu",
+]
+
+# Allow credentials (cookies, authorization headers)
+CORS_ALLOW_CREDENTIALS = True
+
+# Allow specific headers
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+# Allow specific HTTP methods
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
