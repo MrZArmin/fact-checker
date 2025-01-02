@@ -28,7 +28,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-fm+ue3$w#h0%@_u*z4p1l32u%&oh!!ls(7^a_jbq44=@rl@p^!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
 
 ALLOWED_HOSTS = ['api.factchecker.hu', '127.0.0.1']
 
@@ -84,6 +85,21 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "https://factchecker.hu",
+    "https://www.factchecker.hu",
+]
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:5173",  # Vite default
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://factchecker.hu",
+    "https://www.factchecker.hu",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://factchecker.hu",
+    "https://www.factchecker.hu",
 ]
 
 # Allow credentials (cookies, authorization headers)
@@ -111,6 +127,8 @@ CORS_ALLOW_METHODS = [
     'POST',
     'PUT',
 ]
+
+CORS_REPLACE_HTTPS_REFERER = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -180,22 +198,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "file": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": "/Users/zarmin/School/fact-checker/szakdolgozat/logs/debug.log",
-        },
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["file"],
-            "level": "INFO",
-            "propagate": True,
-        },
-    },
-}
