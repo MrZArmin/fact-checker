@@ -25,6 +25,11 @@ from rest_framework_simplejwt.views import (
 from factChecker.controllers.authController import login
 from factChecker.controllers.authController import me
 from factChecker.controllers.authController import logout
+from factChecker.controllers.chatController import start_session
+from factChecker.controllers.chatController import send_message
+from factChecker.controllers.chatController import get_messages
+from factChecker.controllers.chatController import get_sessions
+from factChecker.controllers.chatController import delete_session
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,7 +38,14 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('unscraped-links/', views.get_unscraped_links, name='unscraped_links'),
     path('api/rag/query/', views.query_rag, name='query_rag'),
+    
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
     path('me/', me, name='me'),
+    
+    path('chat/sessions/', get_sessions, name='get_sessions'),
+    path('chat/start/', start_session, name='start_session'),
+    path('chat/<uuid:session_id>/send/', send_message, name='send_message'),
+    path('chat/<uuid:session_id>/messages/', get_messages, name='get_messages'),
+    path('chat/<uuid:session_id>/', delete_session, name='delete_session'),
 ]

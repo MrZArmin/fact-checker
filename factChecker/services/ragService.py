@@ -12,9 +12,7 @@ import numpy
 def adapt_numpy_array(numpy_array):
     return AsIs(repr(numpy_array.tolist()))
 
-
 register_adapter(numpy.ndarray, adapt_numpy_array)
-
 
 class RAGService:
     def __init__(self):
@@ -90,10 +88,6 @@ class RAGService:
         Question: {query}
 
         Answer: """
-        
-        print(prompt)
-        with open('prompt.txt', 'w') as f:
-            f.write(prompt)
 
         response = self.generator(
             prompt,
@@ -104,6 +98,24 @@ class RAGService:
         )
 
         return response[0]['generated_text'].split("Answer: ")[-1].strip()
+    
+    def generate_title(self, context: str) -> str:
+        """Generate title using the LLM"""
+        prompt = f"""Based on the following context, generate a short title. Always provide a clear and concise title. Avoid unnecessary information. Answer in Hungarian.
+
+        Context: {context}
+
+        Title: """
+
+        response = self.generator(
+            prompt,
+            max_new_tokens=1024,
+            num_return_sequences=1,
+            temperature=0.1,
+            do_sample=True
+        )
+
+        return response[0]['generated_text'].split("Title: ")[-1].strip()
 
     def query(self, user_query: str) -> dict:
         """Main RAG pipeline"""
@@ -137,9 +149,9 @@ class RAGService:
                 return {
                     'response': "Found articles but couldn't retrieve their content.",
                     'sources': []
-                }
+                }           
             
-            # 3. Válasz generálása az LLM segítségével
+            # 4.. Válasz generálása az LLM segítségével
             response = self.generate_response(user_query, context)
             
             return {
