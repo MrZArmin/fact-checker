@@ -7,6 +7,8 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 from tqdm import tqdm
+from pathlib import Path
+from typing import Optional
 
 
 def adapt_numpy_array(numpy_array):
@@ -15,12 +17,24 @@ def adapt_numpy_array(numpy_array):
 
 register_adapter(numpy.ndarray, adapt_numpy_array)
 
+
 class RAGServiceOpenAI:
     def __init__(self):
         load_dotenv(override=True)
+        self.prompts_dir = Path(__file__).parent.parent / "prompts"
         self.api_key = os.getenv('OPENAI_API_KEY')
         self.client = OpenAI(api_key=self.api_key)
         self.embedding_model = "text-embedding-3-small"
+
+    def _load_prompt(self, filename: str) -> str:
+        """Load prompt from file."""
+        try:
+            prompt_path = self.prompts_dir / filename
+            with open(prompt_path, "r", encoding="utf-8") as f:
+                return f.read().strip()
+        except Exception as e:
+            raise FileNotFoundError(f"Could not load prompt {
+                                    filename}: {str(e)}")
 
     def get_embedding(self, text: str) -> np.ndarray:
         """Generate embedding for input text using OpenAI"""
@@ -78,51 +92,93 @@ class RAGServiceOpenAI:
                 }
             return {}
 
-    def generate_response(self, query: str, context: str) -> str:
-        """Generate response using GPT-4"""
+    def generate_response(
+        self,
+        query: str,
+        context: str,
+        temperature: float = 0.7,
+        model: str = "gpt-3.5-turbo",
+        max_tokens: Optional[int] = None
+    ) -> str:
+        """
+        Generate a response using GPT model based on query and context.
+
+        Args:
+            query: User's question
+            context: Retrieved context for answering the question
+            temperature: Controls randomness in response (0.0-1.0)
+            model: GPT model to use
+            max_tokens: Maximum tokens in response (optional)
+
+        Returns:
+            str: Generated response in Hungarian
+
+        Raises:
+            Exception: If response generation fails
+        """
         try:
+            messages = [
+                {
+                    "role": "system",
+                    "content": self.chat_prompt
+                },
+                {
+                    "role": "user",
+                    "content": f"Context: {context}\nQuestion: {query}"
+                }
+            ]
+
+            completion_params = {
+                "messages": messages,
+                "model": model,
+                "temperature": temperature,
+            }
+
+            if max_tokens:
+                completion_params["max_tokens"] = max_tokens
+
             chat_completion = self.client.chat.completions.create(
-                messages=[
-                    {
-                        "role": "system",
-                        "content": "Based on the provided context, answer the question. If the answer cannot be found in the context, say so. Always provide a clear and concise answer. Avoid unnecessary information. Answer in a complete sentence. Always answer in Hungarian."
-                    },
-                    {
-                        "role": "user",
-                        "content": f"Context: {context}\nQuestion: {query}"
-                    }
-                ],
-                model="gpt-3.5-turbo",
-                temperature=0.7
-            )
+                **completion_params)
+
             return chat_completion.choices[0].message.content
+
         except Exception as e:
-            print(f"Error generating response: {str(e)}")
-            raise
+            error_msg = f"Error generating response: {str(e)}"
+            raise RuntimeError(error_msg)
 
-    def generate_title(self, text: str) -> str:
-        """Generate title using GPT"""
-
+    def generate_title(
+        self,
+        text: str,
+        temperature: float = 0.7,
+        model: str = "gpt-3.5-turbo",
+    ) -> str:
+        """
+        Generate a title for a conversation.
+        """
         try:
-            response = self.client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {
-                        "role": "system",
-                        "content": "Generate a concise title for the given text. The title is going to be the title of a conversation between a user and the system ai. The title should be clear and informative. Avoid unnecessary information. Answer in Hungarian. Use a maximum of 50 characters. Remember to include the main topic of the text. Answer only with the title."
-                    },
-                    {
-                        "role": "user",
-                        "content": f"Generate a title for the following text: {text}"
-                    }
-                ],
-                temperature=0.7,
-                max_tokens=50
+            messages = [
+                {
+                    "role": "system",
+                    "content": self._load_prompt("title_prompt.txt")
+                },
+                {
+                    "role": "user",
+                    "content": f"Generate a title for the following text: {text}"
+                }
+            ]
+
+            completion = self.client.chat.completions.create(
+                messages=messages,
+                model=model,
+                temperature=temperature,
+                max_tokens=50  # Title length limit
             )
-            title = response.choices[0].message.content.strip()
-            return title
+
+            return completion.choices[0].message.content.strip()
+
         except Exception as e:
-            raise
+            error_msg = f"Error generating title: {str(e)}"
+            raise RuntimeError(error_msg)
 
     def query(self, user_query: str) -> dict:
         """Main RAG pipeline using OpenAI embeddings"""

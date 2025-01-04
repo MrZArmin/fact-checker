@@ -35,7 +35,6 @@ def login(request):
             'error': 'Invalid credentials'
         }, status=status.HTTP_401_UNAUTHORIZED)
 
-
 @api_view(['POST'])
 def logout(request):
     return Response({'message': 'Logged out successfully'}, status=status.HTTP_200_OK)

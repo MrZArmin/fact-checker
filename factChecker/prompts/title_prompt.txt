@@ -1,0 +1,14 @@
+Generate a concise, informative title for this conversation between an AI and a user, based on the user's first message. Follow these rules:
+
+Focus only on the main topic or question from the user's first message
+Maximum length: 50 characters
+Must be in Hungarian language
+Generate only the title itself, with no additional text or explanations
+The title should be specific and descriptive, not generic
+If the message is a question, the title should reflect this
+Avoid unnecessary words, articles, or decorative elements
+If the message contains multiple topics, focus on the most important one
+Do not include user names or system references
+Make it easy to understand and searchable
+
+Remember: Only output the Hungarian title itself, nothing else.

@@ -9,7 +9,6 @@ import json
 
 rag_service = RAGServiceOpenAI()
 
-
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
@@ -25,27 +24,18 @@ def start_session(request):
     session.title = title
     session.save()    
     
-    return Response({'code': 200, 'payload': {'session': {'id': session.id, 'title': session.title}}})
-
+    return Response({'code': 200, 'payload': {'session': session.to_dict()}})
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
 def get_sessions(request):
-    sessions = ChatSession.objects.filter(user=request.user)
-    sessions_data = [
-        {
-            'id': session.id,
-            'title': session.title,
-            'status': session.status,
-            'created_at': session.created_at
-        }
-        for session in sessions
-    ]
-    return Response(
-        {'code': 200, 'payload': {'sessions': sessions_data}}
-    )
-
+    sessions = ChatSession.objects.filter(user=request.user).order_by('updated_at', 'title')
+    sessions_data = [session.to_dict() for session in sessions]
+    return Response({
+        'code': 200, 
+        'payload': {'sessions': sessions_data}
+    })
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -98,7 +88,6 @@ def get_messages(request, session_id):
         {'sender': msg.sender, 'message': msg.message,
             'timestamp': msg.timestamp} for msg in messages]
     return Response({'code': 200, 'payload': {'messages': messages_data}})
-
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
