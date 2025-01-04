@@ -120,7 +120,7 @@ class RAGServiceOpenAI:
             messages = [
                 {
                     "role": "system",
-                    "content": self.chat_prompt
+                    "content": self._load_prompt("response_prompt.txt")
                 },
                 {
                     "role": "user",
