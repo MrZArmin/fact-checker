@@ -67,13 +67,17 @@ def send_message(request, session_id):
         sender='ai',
         message=response['response']
     )
+    
+    session.updated_at = ChatMessage.objects.filter(session=session).latest('timestamp').timestamp
+    session.save()
 
     return Response(
         {
             'code': 200,
             'payload': {
                 'response': response['response'],
-                'sources': response['sources']
+                'sources': response['sources'],
+                'session': session.to_dict()
             }
         }
     )
