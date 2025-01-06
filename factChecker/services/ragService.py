@@ -33,7 +33,7 @@ class RAGService:
         embedding = self.embedding_model.encode(text)
         return embedding.astype(np.float32)  # Ensure float32 type
 
-    def find_similar_articles(self, query: str, top_k: int = 1) -> List[Tuple[int, float]]:
+    def find_similar_articles(self, query: str, top_k: int = 3) -> List[Tuple[int, float]]:
         """
         Find similar articles using vector similarity search
         Returns: List of tuples (article_id, similarity_score)

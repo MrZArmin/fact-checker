@@ -9,6 +9,7 @@ import os
 from tqdm import tqdm
 from pathlib import Path
 from typing import Optional
+from factChecker.models import ChatMessageArticle, Article
 
 
 def adapt_numpy_array(numpy_array):
@@ -73,31 +74,19 @@ class RAGServiceOpenAI:
 
     def get_article_content(self, article_id: int) -> dict:
         """Retrieve article content by ID"""
-        with connection.cursor() as cursor:
-            cursor.execute("""
-                SELECT text, title, lead, link
-                FROM articles
-                WHERE id = %s
-            """, [article_id])
-
-            result = cursor.fetchone()
-
-            if result:
-                text, title, lead, link = result
-                return {
-                    'title': title,
-                    'lead': lead,
-                    'text': text,
-                    'link': link
-                }
-            return {}
+        try:
+            article = Article.objects.get(id=article_id)
+            
+            return article.to_small_dict()
+        except Article.DoesNotExist:
+            return None
 
     def generate_response(
         self,
         query: str,
         context: str,
         temperature: float = 0.7,
-        model: str = "gpt-3.5-turbo",
+        model: str = "gpt-4o",
         max_tokens: Optional[int] = None
     ) -> str:
         """
@@ -179,48 +168,80 @@ class RAGServiceOpenAI:
         except Exception as e:
             error_msg = f"Error generating title: {str(e)}"
             raise RuntimeError(error_msg)
+        
+    def extract_valuable_info(self, text: str) -> str:
+        """
+        Extract valuable information from the text.
+        """
+        try:
+            messages = [
+                {
+                    "role": "system",
+                    "content": self._load_prompt("extract_info_prompt.txt")
+                },
+                {
+                    "role": "user",
+                    "content": f"Extract valuable information from the following text: {text}"
+                }
+            ]
+
+            completion = self.client.chat.completions.create(
+                messages=messages,
+                model="gpt-3.5-turbo",
+                temperature=0.7,
+                max_tokens=150  # Limit for extracted info
+            )
+
+            return completion.choices[0].message.content.strip()
+
+        except Exception as e:
+            error_msg = f"Error extracting information: {str(e)}"
+            raise RuntimeError(error_msg)
 
     def query(self, user_query: str) -> dict:
         """Main RAG pipeline using OpenAI embeddings"""
         try:
-            # 1. Find similar articles using OpenAI embeddings
-            similar_articles = self.find_similar_articles(user_query)
-
-            if not similar_articles:
-                return {
-                    'response': "Nem találtunk releváns cikkeket az adatbázisban.",
-                    'sources': []
-                }
-
-            # 2. Retrieve article contents
-            articles = []
+            valuable_info_in_query = self.extract_valuable_info(user_query)
             context = ""
+            articles = []
+            if valuable_info_in_query.strip() != "Null":          
+                # 1. Find similar articles using OpenAI embeddings
+                similar_articles = self.find_similar_articles(user_query)
 
-            for article_id, similarity_score in similar_articles:
-                article_content = self.get_article_content(article_id)
-                if article_content:
-                    context += f"\nCím: {article_content['title']}\nBevezető: {
-                        article_content['lead']}\nTartalom: {article_content['text']}\n"
-                    articles.append({
-                        'id': article_id,
-                        'title': article_content['title'],
-                        'lead': article_content['lead'],
-                        'link': article_content['link'],
-                        'similarity_score': round(similarity_score, 4)
-                    })
+                if not similar_articles:
+                    return {
+                        'response': "Nem találtunk releváns cikkeket az adatbázisban.",
+                        'sources': []
+                    }
 
-            if not context.strip():
-                return {
-                    'response': "Találtunk cikkeket, de nem sikerült lekérni a tartalmukat.",
-                    'sources': []
-                }
+                # 2. Retrieve article contents
+                for article_id, similarity_score in similar_articles:
+                    article_content = self.get_article_content(article_id)
+                    if article_content:
+                        context += f"\nCím: {article_content['title']}\nBevezető: {article_content['lead']}\nTartalom: {article_content['text']}\n"
+                        
+                        articles.append({
+                            'id': article_id,
+                            'similarity_score': round(similarity_score, 4)
+                        })
+
+                if not context.strip():
+                    return {
+                        'response': "Találtunk cikkeket, de nem sikerült lekérni a tartalmukat.",
+                        'sources': []
+                    }
+                
+                response = self.generate_response(valuable_info_in_query, context)
+                
 
             # 3. Generate response using GPT-4
             response = self.generate_response(user_query, context)
+            print(articles)
 
             return {
                 'response': response,
-                'sources': articles
+                'sources': articles,
+                'valuable_info': valuable_info_in_query
             }
 
         except Exception as e:

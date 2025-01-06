@@ -1,0 +1,9 @@
+Extract the valuable information from the following user's prompt. Follow these rules:
+
+Exclude all non-essential things such as greetings, filler content, and irrelevant details.
+Only return the part that can be used for the RAG algorithm as context.
+You can select multiple parts, they don't have to cohere.
+The response should be exactly from the provided prompt word by word.
+If there is no valuable part, return "Null" and strictly "Null"
+Be lenient enough to capture useful information but strict enough to filter out unnecessary content.
+Ensure that valid questions or statements are not mistakenly filtered out as "Null".

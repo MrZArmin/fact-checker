@@ -30,6 +30,7 @@ from factChecker.controllers.chatController import send_message
 from factChecker.controllers.chatController import get_messages
 from factChecker.controllers.chatController import get_sessions
 from factChecker.controllers.chatController import delete_session
+from factChecker.controllers.chatController import extract
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -48,4 +49,6 @@ urlpatterns = [
     path('chat/<uuid:session_id>/send/', send_message, name='send_message'),
     path('chat/<uuid:session_id>/messages/', get_messages, name='get_messages'),
     path('chat/<uuid:session_id>/', delete_session, name='delete_session'),
+    
+    path('chat/extract/', extract, name='extract'),
 ]

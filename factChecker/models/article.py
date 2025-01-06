@@ -18,6 +18,16 @@ class Article(models.Model):
     def __str__(self):
         return self.title
     
+    def to_small_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'date': self.date,
+            'lead': self.lead,
+            'text': self.text,
+            'link': self.link
+        }
+    
     class Meta:
         db_table = 'articles'
         managed = True
