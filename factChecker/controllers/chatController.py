@@ -9,7 +9,6 @@ import json
 
 rag_service = RAGServiceOpenAI()
 
-
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
@@ -27,7 +26,6 @@ def start_session(request):
 
     return Response({'code': 200, 'payload': {'session': session.to_dict()}})
 
-
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 @csrf_exempt
@@ -39,7 +37,6 @@ def get_sessions(request):
         'code': 200,
         'payload': {'sessions': sessions_data}
     })
-
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -63,7 +60,6 @@ def send_message(request, session_id):
         session=session,
         sender='user',
         message=message,
-        valuable_info=response['valuable_info']
     )
     # Save bot response
     new_ai_response = ChatMessage.objects.create(
@@ -97,7 +93,6 @@ def send_message(request, session_id):
         }
     })
 
-
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_messages(request, session_id):
@@ -105,7 +100,6 @@ def get_messages(request, session_id):
     messages = session.messages.all().order_by('timestamp')
     messages_data = [msg.to_dict() for msg in messages]
     return Response({'code': 200, 'payload': {'messages': messages_data}})
-
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
@@ -118,5 +112,5 @@ def delete_session(request, session_id):
 def extract(request):
     data = json.loads(request.body)
     text = data.get('text')
-    response = rag_service.extract_valuable_info(text)
+    response = rag_service.improve_user_prompt(text)
     return Response({'code': 200, 'payload': {'response': response}})

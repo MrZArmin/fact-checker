@@ -80,24 +80,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'szakdolgozat.wsgi.application'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Vite default
+    "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "https://factchecker.hu",
     "https://www.factchecker.hu",
-]
-
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:5173",  # Vite default
-    "http://127.0.0.1:5173",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://factchecker.hu",
-    "https://www.factchecker.hu",
+    "https://api.factchecker.hu",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
     "https://factchecker.hu",
     "https://www.factchecker.hu",
 ]
@@ -129,6 +122,11 @@ CORS_ALLOW_METHODS = [
 ]
 
 #CORS_REPLACE_HTTPS_REFERER = True
+
+# SECURE_SSL_REDIRECT = True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

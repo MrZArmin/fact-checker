@@ -30,7 +30,6 @@ class ChatMessage(models.Model):
         ChatSession, related_name='messages', on_delete=models.CASCADE)
     sender = models.CharField(max_length=255)
     message = models.TextField()
-    valuable_info = models.TextField(null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def to_dict(self):
@@ -39,7 +38,6 @@ class ChatMessage(models.Model):
             'sender': self.sender,
             'message': self.message,
             'timestamp': self.timestamp,
-            'valuable_info': self.valuable_info,
             'articles': []
         }
 

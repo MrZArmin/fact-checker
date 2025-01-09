@@ -51,7 +51,7 @@ class RAGServiceOpenAI:
             print(f"Error generating embedding: {str(e)}")
             raise
 
-    def find_similar_articles(self, query: str, top_k: int = 3) -> List[Tuple[int, float]]:
+    def find_similar_articles(self, query: str, top_k: int = 15) -> List[Tuple[int, float]]:
         """
         Find similar articles using vector similarity search with OpenAI embeddings
         Returns: List of tuples (article_id, similarity_score)
@@ -61,16 +61,24 @@ class RAGServiceOpenAI:
 
         with connection.cursor() as cursor:
             cursor.execute("""
-                SELECT id, 1 - (embedding_openai <=> %s::vector) as similarity
-                FROM articles
+                SELECT id, article_id, 1 - (embedding_openai <=> %s::vector) as similarity
+                FROM semantic_chunks
                 WHERE embedding_openai IS NOT NULL
                 ORDER BY embedding_openai <=> %s::vector
                 LIMIT %s
             """, [embedding_list, embedding_list, top_k])
 
             results = cursor.fetchall()
-
-        return [(row[0], float(row[1])) for row in results]
+        print(results)
+        # Return only the distinct articles by id
+        unique_ids = set()
+        results = {article_id: similarity_score for _, article_id, similarity_score in results if article_id not in unique_ids and not unique_ids.add(article_id)}
+        print(results)
+        
+        articles = Article.objects.filter(id__in=results.keys()).values_list('id', flat=True)
+        
+        print(results)
+        return [(article_id, similarity_score) for article_id, similarity_score in results.items()]
 
     def get_article_content(self, article_id: int) -> dict:
         """Retrieve article content by ID"""
@@ -169,9 +177,9 @@ class RAGServiceOpenAI:
             error_msg = f"Error generating title: {str(e)}"
             raise RuntimeError(error_msg)
         
-    def extract_valuable_info(self, text: str) -> str:
+    def improve_user_prompt(self, text: str) -> str:
         """
-        Extract valuable information from the text.
+        Improve user query prompt by adding context and structure.
         """
         try:
             messages = [
@@ -181,15 +189,17 @@ class RAGServiceOpenAI:
                 },
                 {
                     "role": "user",
-                    "content": f"Extract valuable information from the following text: {text}"
+                    "content": 
+                        f"""Original user query: {text}
+                        Please transform this query into a detailed search prompt following the above guidelines.
+                    """
                 }
             ]
 
             completion = self.client.chat.completions.create(
                 messages=messages,
                 model="gpt-3.5-turbo",
-                temperature=0.7,
-                max_tokens=150  # Limit for extracted info
+                temperature=0.4,
             )
 
             return completion.choices[0].message.content.strip()
@@ -201,47 +211,40 @@ class RAGServiceOpenAI:
     def query(self, user_query: str) -> dict:
         """Main RAG pipeline using OpenAI embeddings"""
         try:
-            valuable_info_in_query = self.extract_valuable_info(user_query)
+            improved_prompt = self.improve_user_prompt(user_query)
             context = ""
-            articles = []
-            if valuable_info_in_query.strip() != "Null":          
-                # 1. Find similar articles using OpenAI embeddings
-                similar_articles = self.find_similar_articles(user_query)
+            articles = []    
+            # 1. Find similar articles using OpenAI embeddings
+            similar_articles = self.find_similar_articles(improved_prompt)
+            return
+            if not similar_articles:
+                return {
+                    'response': "Nem találtunk releváns cikkeket az adatbázisban.",
+                    'sources': []
+                }
 
-                if not similar_articles:
-                    return {
-                        'response': "Nem találtunk releváns cikkeket az adatbázisban.",
-                        'sources': []
-                    }
+            # 2. Retrieve article contents
+            for article_id, similarity_score in similar_articles:
+                article_content = self.get_article_content(article_id)
+                if article_content:
+                    context += f"\nCím: {article_content['title']}\nBevezető: {article_content['lead']}\nTartalom: {article_content['text']}\n"
+                    
+                    articles.append({
+                        'id': article_id,
+                        'similarity_score': round(similarity_score, 4)
+                    })
 
-                # 2. Retrieve article contents
-                for article_id, similarity_score in similar_articles:
-                    article_content = self.get_article_content(article_id)
-                    if article_content:
-                        context += f"\nCím: {article_content['title']}\nBevezető: {article_content['lead']}\nTartalom: {article_content['text']}\n"
-                        
-                        articles.append({
-                            'id': article_id,
-                            'similarity_score': round(similarity_score, 4)
-                        })
-
-                if not context.strip():
-                    return {
-                        'response': "Találtunk cikkeket, de nem sikerült lekérni a tartalmukat.",
-                        'sources': []
-                    }
-                
-                response = self.generate_response(valuable_info_in_query, context)
-                
-
-            # 3. Generate response using GPT-4
-            response = self.generate_response(user_query, context)
-            print(articles)
+            if not context.strip():
+                return {
+                    'response': "Találtunk cikkeket, de nem sikerült lekérni a tartalmukat.",
+                    'sources': []
+                }
+            
+            response = self.generate_response(improved_prompt, context)
 
             return {
                 'response': response,
-                'sources': articles,
-                'valuable_info': valuable_info_in_query
+                'sources': articles
             }
 
         except Exception as e:

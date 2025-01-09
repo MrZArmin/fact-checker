@@ -50,5 +50,5 @@ urlpatterns = [
     path('chat/<uuid:session_id>/messages/', get_messages, name='get_messages'),
     path('chat/<uuid:session_id>/', delete_session, name='delete_session'),
     
-    path('chat/extract/', extract, name='extract'),
+    path('extract/', extract, name='extract'),
 ]
