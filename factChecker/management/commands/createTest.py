@@ -26,6 +26,7 @@ class Command(BaseCommand):
 
     def _clear_benchmark_table(self):
         """Delete all records from the Benchmark table."""
+        # MEGBESZÉLÉS: TÖRÖLJÜK VAGY NE?
         try:
             deleted_count = Benchmark.objects.all().delete()[0]
             self.stdout.write(self.style.SUCCESS(f'Successfully deleted {deleted_count} benchmark records'))
@@ -35,18 +36,17 @@ class Command(BaseCommand):
             raise RuntimeError(error_msg)
 
     def _create_test(self, articles):
-        answers = []
         for article in articles:
             text = article.text
             answer_str = self._create_question_for_article(text)
             try:
                 answer_dict = json.loads(answer_str)
-                answers.append(answer_dict)
-                Benchmark.objects.create(
-                    article=article,
-                    question=answer_dict['question'],
-                    answer=answer_dict['answer']
-                )
+                for answer in answer_dict:
+                    Benchmark.objects.create(
+                        article=article,
+                        question=answer['question'],
+                        answer=answer['answer']
+                    )
             except json.JSONDecodeError as e:
                 self.stdout.write(self.style.ERROR(f'Error parsing JSON for article {str(e)}'))
             except Exception as e:
