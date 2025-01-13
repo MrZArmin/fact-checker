@@ -5,8 +5,7 @@ class Benchmark(models.Model):
     id = models.AutoField(primary_key=True)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     question = models.TextField()
-    answer = models.CharField(max_length=10)
-
+    answer = models.BooleanField()
 
     def __str__(self):
         return self.question + ": " + self.answer

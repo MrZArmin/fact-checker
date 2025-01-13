@@ -1,18 +1,20 @@
-Create 4 yes-or-no question, 2 yes and 2 no questions in Hungarian based on the provided article.
-Return only the JSON object itself - no code blocks, no explanations, just the raw JSON data with question, and answer fields.
-[{
-  "question": "<yes question>",
-  "answer": "<igen>"
-},
-{
-  "question": "<yes question>",
-  "answer": "<igen>"
-},
-{
-  "question": "<no question>",
-  "answer": "<nem>"
-},
-{
-  "question": "<no question>",
-  "answer": "<nem>"
-}]
+Create 4 yes-or-no questions in Hungarian that meet these specific criteria:
+Questions must be about verifiable, objective historical facts, specific documented events, or concrete information from the provided article
+Each question must:
+
+Be completely self-contained (not require any context beyond what's in the question itself)
+Include all relevant context within the question (dates, locations, names, etc.)
+Be about a single, specific fact that can be definitively verified
+Not use vague terms like 'recently', 'sometimes', or 'often'
+Not ask about opinions, preferences, or subjective matters
+
+Examples of good questions:
+'Volt-e Magyarországnak női miniszterelnöke 2023-ban?' (clear timeframe, specific fact)
+'Az első magyar űrhajós, Farkas Bertalan 1980-ban repült-e az űrbe?' (includes full context)
+Examples of bad questions:
+'Működik a rendszer?' (lacks context)
+'A felhasználók szeretik ezt a funkciót?' (subjective)
+'Nemrég változott a szabály?' (vague timeframe)
+If the question references a specific event or situation, include the necessary context directly in the question.
+Return JSON in exactly this format with no additional formatting, markdown, or code blocks:
+[{"question": "<yes question>","answer": true},{"question": "<yes question>","answer": true},{"question": "<no question>","answer": false},{"question": "<no question>","answer": false}]

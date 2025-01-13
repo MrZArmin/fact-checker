@@ -19,25 +19,13 @@ class Command(BaseCommand):
         self.temperature = 0.7
 
     def handle(self, *args, **kwargs):
-        self._clear_benchmark_table()
-        random_articles = Article.objects.order_by('?')[:10]
+        random_articles = Article.objects.order_by('?')[:100]
         self._create_test(random_articles)
         self.stdout.write(self.style.SUCCESS('Successfully created new benchmark data'))
 
-    def _clear_benchmark_table(self):
-        """Delete all records from the Benchmark table."""
-        # MEGBESZÉLÉS: TÖRÖLJÜK VAGY NE?
-        try:
-            deleted_count = Benchmark.objects.all().delete()[0]
-            self.stdout.write(self.style.SUCCESS(f'Successfully deleted {deleted_count} benchmark records'))
-        except Exception as e:
-            error_msg = f"Error clearing benchmark table: {str(e)}"
-            self.stdout.write(self.style.ERROR(error_msg))
-            raise RuntimeError(error_msg)
-
     def _create_test(self, articles):
         for article in articles:
-            text = article.text
+            text = article.title + " " + article.lead + " " + article.text
             answer_str = self._create_question_for_article(text)
             try:
                 answer_dict = json.loads(answer_str)

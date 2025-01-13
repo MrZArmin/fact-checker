@@ -10,14 +10,13 @@ from tqdm import tqdm
 from pathlib import Path
 from typing import Optional
 from factChecker.models import ChatMessageArticle, Article
+from django.db.models import Case, When
 
 
 def adapt_numpy_array(numpy_array):
     return AsIs(repr(numpy_array.tolist()))
 
-
 register_adapter(numpy.ndarray, adapt_numpy_array)
-
 
 class RAGServiceOpenAI:
     def __init__(self):
@@ -60,25 +59,43 @@ class RAGServiceOpenAI:
         embedding_list = query_embedding.astype(np.float32).tolist()
 
         with connection.cursor() as cursor:
-            cursor.execute("""
-                SELECT id, article_id, 1 - (embedding_openai <=> %s::vector) as similarity
-                FROM semantic_chunks
-                WHERE embedding_openai IS NOT NULL
-                ORDER BY embedding_openai <=> %s::vector
-                LIMIT %s
-            """, [embedding_list, embedding_list, top_k])
+            cursor.execute(
+                """
+                    WITH ranked_chunks AS (
+                        SELECT 
+                            id,
+                            article_id,
+                            1 - (embedding <=> %s::vector) as similarity,
+                            ROW_NUMBER() OVER (PARTITION BY article_id ORDER BY embedding <=> %s::vector) as rank
+                        FROM semantic_chunks
+                        WHERE embedding IS NOT NULL
+                    )
+                    SELECT id, article_id, similarity
+                    FROM ranked_chunks
+                    WHERE rank = 1
+                    ORDER BY similarity DESC
+                    LIMIT %s
+                """, 
+                [embedding_list, embedding_list, top_k]
+            )
 
-            results = cursor.fetchall()
-        print(results)
-        # Return only the distinct articles by id
-        unique_ids = set()
-        results = {article_id: similarity_score for _, article_id, similarity_score in results if article_id not in unique_ids and not unique_ids.add(article_id)}
-        print(results)
+            chunk_results = cursor.fetchall()
+            
+        # Get the Article objects for the found article_ids
+        article_ids = [result[0] for result in chunk_results]
+        similarity_scores = {result[0]: result[1] for result in chunk_results}
         
-        articles = Article.objects.filter(id__in=results.keys()).values_list('id', flat=True)
+        # Use Case/When to preserve the order
+        preserved_order = Case(*[
+            When(id=pk, then=pos) for pos, pk in enumerate(article_ids)
+        ])
         
-        print(results)
-        return [(article_id, similarity_score) for article_id, similarity_score in results.items()]
+        articles = Article.objects.filter(
+            id__in=article_ids
+        ).order_by(preserved_order)
+        
+        # Return articles with their similarity scores
+        return [(article, similarity_scores[article.id]) for article in articles]
 
     def get_article_content(self, article_id: int) -> dict:
         """Retrieve article content by ID"""
@@ -216,6 +233,7 @@ class RAGServiceOpenAI:
             articles = []    
             # 1. Find similar articles using OpenAI embeddings
             similar_articles = self.find_similar_articles(improved_prompt)
+            print(similar_articles)
             return
             if not similar_articles:
                 return {
