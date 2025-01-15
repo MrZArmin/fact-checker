@@ -79,12 +79,10 @@ class RAGServiceOpenAI:
             context = ""
             articles = []
             
-            print(f"Improved prompt: {improved_prompt}")
-
             # 1. Find similar articles using the article retriever instance
             similar_articles = self.article_retriever.find_similar_articles(
                 query=improved_prompt,
-                model="mxbai"
+                model="openai"
             )
             
             if not similar_articles:

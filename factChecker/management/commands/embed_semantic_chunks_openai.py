@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand
 from django.db import connection
 from tqdm import tqdm
 import gc
+import json
 from openai import OpenAI
 import time
 import os
@@ -73,15 +74,15 @@ class Command(BaseCommand):
             """)
             return cursor.fetchone()[0]
 
-    def fetch_chunks(self, offset: int) -> List[Dict[str, Any]]:
+    def fetch_chunks(self, last_id: int) -> List[Dict[str, Any]]:
         with connection.cursor() as cursor:
             cursor.execute("""
                 SELECT id, text
                 FROM semantic_chunks
-                WHERE embedding_openai IS NULL
+                WHERE embedding_openai IS NULL AND id > %s
                 ORDER BY id
-                LIMIT %s OFFSET %s
-            """, [self.batch_size, offset])
+                LIMIT %s
+            """, [last_id, self.batch_size])
 
             return [
                 {'id': row[0], 'text': row[1]}
@@ -95,20 +96,20 @@ class Command(BaseCommand):
                     UPDATE semantic_chunks
                     SET embedding_openai = %s
                     WHERE id = %s
-                """, [embedding.tolist(), chunk_id])
+                """, [json.dumps(embedding.tolist()), chunk_id])
         connection.commit()
 
     def process_chunks(self):
         total_chunks = self.get_total_chunks()
         self.stdout.write(f"Found {total_chunks} chunks to process")
 
-        offset = 0
+        last_id = 0
         total_processed = 0
 
         # Create main progress bar for overall progress
         with tqdm(total=total_chunks, desc="Overall progress", unit='chunk') as pbar:
             while True:
-                chunks = self.fetch_chunks(offset)
+                chunks = self.fetch_chunks(last_id)
                 if not chunks:
                     break
 
@@ -117,7 +118,7 @@ class Command(BaseCommand):
 
                 try:
                     # Pass custom description to nested progress bar
-                    batch_desc = f"Batch {offset//self.batch_size + 1}"
+                    batch_desc = f"Processing Batch (ID > {last_id})"
                     embeddings = self.embedder.get_embeddings(texts, desc=batch_desc)
                     self.save_embeddings(chunk_ids, embeddings)
 
@@ -125,10 +126,12 @@ class Command(BaseCommand):
                     total_processed += batch_size
                     pbar.update(batch_size)
 
-                except Exception as e:
-                    self.stderr.write(f"Error processing batch at offset {offset}: {str(e)}")
+                    # Update the last processed ID
+                    last_id = chunk_ids[-1]
 
-                offset += self.batch_size
+                except Exception as e:
+                    self.stderr.write(f"Error processing batch with last ID {last_id}: {str(e)}")
+
                 gc.collect()
 
         self.stdout.write(self.style.SUCCESS(f"Finished processing {total_processed} chunks"))

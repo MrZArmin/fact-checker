@@ -77,7 +77,7 @@ class ArticleRetrieverService:
         ).order_by(preserved_order)
 
         # Return articles with their similarity scores
-        return [(article, similarity_scores[article.id]) for article in articles[:3]]
+        return [(article, similarity_scores[article.id]) for article in articles[:4]]
 
     def get_article_content(self, article_id: int) -> Optional[Dict]:
         """
