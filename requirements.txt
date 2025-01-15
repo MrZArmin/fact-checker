@@ -21,3 +21,4 @@ PyJWT
 python-dotenv
 django-cors-headers
 djangorestframework-simplejwt
+langchain-experimental
