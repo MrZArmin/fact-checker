@@ -22,3 +22,6 @@ python-dotenv
 django-cors-headers
 djangorestframework-simplejwt
 langchain-experimental
+langchain-openai
+spacy
+https://huggingface.co/huspacy/hu_core_news_lg/resolve/main/hu_core_news_lg-any-py3-none-any.whl
