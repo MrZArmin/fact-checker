@@ -15,6 +15,3 @@ class SemanticChunkEnhanced(models.Model):
     class Meta:
         db_table = 'enhanced_semantic_chunks'
         managed = True
-        indexes = [
-            models.Index(fields=['created_at']),
-        ]
