@@ -334,7 +334,6 @@ class Command(BaseCommand):
         start_time = time.time()
         
         self.stdout.write(f"Starting semantic chunk processing using {options['embedding_type']} embeddings")
-        
         # Cleanup if requested
         if options['cleanup']:
             cleaned = self.cleanup_orphaned_chunks()
