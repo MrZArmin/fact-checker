@@ -75,16 +75,17 @@ class RAGServiceOpenAI:
     def query(self, user_query: str) -> dict:
         """Main RAG pipeline using OpenAI embeddings"""
         try:
-            improved_prompt = user_query #self.improve_user_prompt(user_query)
+            improved_prompt = self.improve_user_prompt(user_query)
+            print(improved_prompt)
             context = ""
             articles = []
-            
+
             # 1. Find similar articles using the article retriever instance
             similar_articles = self.article_retriever.find_similar_articles(
                 query=improved_prompt,
                 model="openai"
             )
-            
+
             if not similar_articles:
                 return {
                     'response': "Nem találtunk releváns cikkeket az adatbázisban.",
@@ -96,7 +97,7 @@ class RAGServiceOpenAI:
                 article_content = self.article_retriever.get_article_content(article.id)
                 if article_content:
                     context += f"\nCím: {article_content['title']}\nBevezető: {article_content['lead']}\nTartalom: {article_content['text']}\n"
-                    
+
                     articles.append({
                         'id': article.id,
                         'similarity_score': round(float(similarity_score), 4)
@@ -107,8 +108,8 @@ class RAGServiceOpenAI:
                     'response': "Találtunk cikkeket, de nem sikerült lekérni a tartalmukat.",
                     'sources': []
                 }
-            
-            response = self.generate_response(improved_prompt, context)
+
+            response = self.generate_response(user_query, context)
 
             return {
                 'response': response,
