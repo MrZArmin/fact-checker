@@ -11,6 +11,7 @@ from pathlib import Path
 from factChecker.models import ChatMessageArticle, Article
 from django.db.models import Case, When
 from factChecker.services.articleRetrieverService import ArticleRetrieverService
+import huspacy
 
 def adapt_numpy_array(numpy_array):
     return AsIs(repr(numpy_array.tolist()))
@@ -39,8 +40,9 @@ class RAGServiceOpenAI:
         self,
         query: str,
         context: str,
-        temperature: float = 0.7,
-        model: str = "gpt-4",
+        systemPromptTxt: str = "response_prompt.txt",
+        temperature: float = 0.4,
+        model: str = "gpt-3.5-turbo",
         max_tokens: Optional[int] = None
     ) -> str:
         """Generate a response using GPT model based on query and context."""
@@ -48,7 +50,7 @@ class RAGServiceOpenAI:
             messages = [
                 {
                     "role": "system",
-                    "content": self._load_prompt("response_prompt.txt")
+                    "content": self._load_prompt(systemPromptTxt)
                 },
                 {
                     "role": "user",
@@ -72,11 +74,15 @@ class RAGServiceOpenAI:
             error_msg = f"Error generating response: {str(e)}"
             raise RuntimeError(error_msg)
 
-    def query(self, user_query: str) -> dict:
+    def query(self, user_query: str, threshold=0.6) -> dict:
         """Main RAG pipeline using OpenAI embeddings"""
         try:
             improved_prompt = self.improve_user_prompt(user_query)
-            print(improved_prompt)
+
+            #prompt_ents = self._extract_entites_from_prompt(user_query)
+            #print(prompt_ents)
+
+            #print("Improved prompt:" + improved_prompt)
             context = ""
             articles = []
 
@@ -85,18 +91,18 @@ class RAGServiceOpenAI:
                 query=improved_prompt,
                 model="openai"
             )
-
-            if not similar_articles:
+            top_similarity = round(float(similar_articles[0][1]), 4)
+            print(top_similarity)
+            if top_similarity < threshold:
+                response = self.generate_response(user_query, context, "basic_answer_prompt.txt")
                 return {
-                    'response': "Nem találtunk releváns cikkeket az adatbázisban.",
+                    'response': response,
                     'sources': []
                 }
-
             # 2. Retrieve article contents
             for article, similarity_score in similar_articles:
-                article_content = self.article_retriever.get_article_content(article.id)
-                if article_content:
-                    context += f"\nCím: {article_content['title']}\nBevezető: {article_content['lead']}\nTartalom: {article_content['text']}\n"
+                if article:
+                    context += f"\nCím: {article.title}\nBevezető: {article.lead}\nTartalom: {article.text}\n"
 
                     articles.append({
                         'id': article.id,
@@ -146,6 +152,17 @@ class RAGServiceOpenAI:
         except Exception as e:
             error_msg = f"Error extracting information: {str(e)}"
             raise RuntimeError(error_msg)
+
+    def _extract_entites_from_prompt(self, query):
+        nlp = huspacy.load()
+        doc = nlp(query)
+        entities = {}
+
+        for ent in doc.ents:
+            if ent.label not in entities:
+                entities[ent.label_] = []
+            entities[ent.label_].append(ent.text)
+        return entities
 
     def generate_title(
         self,

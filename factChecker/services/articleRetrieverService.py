@@ -13,12 +13,12 @@ class ArticleRetrieverService:
     def find_similar_articles(self, query: str, model: str = "openai", top_k: int = 15) -> List[Tuple[Article, float]]:
         """
         Find similar articles using vector similarity search with specified embedding model
-        
+
         Args:
             query (str): The search query text
             model (str): The embedding model to use ("openai" or "mxbai")
             top_k (int): Number of top results to return
-            
+
         Returns:
             List[Tuple[Article, float]]: List of tuples containing (article, similarity_score)
         """
@@ -58,9 +58,6 @@ class ArticleRetrieverService:
                 [embedding_list, embedding_list, top_k]
             )
             chunk_results = cursor.fetchall()
-            
-        # print the chunks
-        print(chunk_results)
 
         # Process results
         article_ids = [result[1] for result in chunk_results]  # Using article_id instead of id
@@ -70,7 +67,7 @@ class ArticleRetrieverService:
         preserved_order = Case(*[
             When(id=pk, then=pos) for pos, pk in enumerate(article_ids)
         ])
-        
+
         # Fetch articles in the correct order
         articles = Article.objects.filter(
             id__in=article_ids
@@ -82,10 +79,10 @@ class ArticleRetrieverService:
     def get_article_content(self, article_id: int) -> Optional[Dict]:
         """
         Retrieve article content by ID
-        
+
         Args:
             article_id (int): The ID of the article to retrieve
-            
+
         Returns:
             Optional[Dict]: Article content dictionary or None if not found
         """
@@ -98,7 +95,7 @@ class ArticleRetrieverService:
     def batch_process_embeddings(self, model: str = "openai", batch_size: int = 32) -> None:
         """
         Process embeddings for articles in batches
-        
+
         Args:
             model (str): The embedding model to use ("openai" or "mxbai")
             batch_size (int): Size of batches to process
