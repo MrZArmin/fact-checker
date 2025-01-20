@@ -16,8 +16,8 @@ class Article(models.Model):
     embedding_openai = VectorField(dimensions=1536, null=True)
 
     def __str__(self):
-        return self.title
-    
+        return f"\nCím: {self.title}\nBevezető: {self.lead}\nTartalom: {self.text}\n"
+
     def to_small_dict(self):
         return {
             'id': self.id,
@@ -27,7 +27,7 @@ class Article(models.Model):
             'text': self.text,
             'link': self.link
         }
-    
+
     class Meta:
         db_table = 'articles'
         managed = True

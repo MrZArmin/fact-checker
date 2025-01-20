@@ -12,6 +12,7 @@ from factChecker.models import ChatMessageArticle, Article
 from django.db.models import Case, When
 from factChecker.services.articleRetrieverService import ArticleRetrieverService
 import huspacy
+import cohere
 
 def adapt_numpy_array(numpy_array):
     return AsIs(repr(numpy_array.tolist()))
@@ -26,6 +27,9 @@ class RAGServiceOpenAI:
         self.client = OpenAI(api_key=self.api_key)
         self.embedding_model = "text-embedding-3-small"
         self.article_retriever = ArticleRetrieverService()
+        self.cohere_api_key = os.getenv('COHERE_API_KEY')
+        self.reranker_model = "rerank-multilingual-v3.0" # context: MAX 4096tokens
+        self.cohere_client = cohere.Client(self.cohere_api_key)
 
     def _load_prompt(self, filename: str) -> str:
         """Load prompt from file."""
@@ -91,16 +95,34 @@ class RAGServiceOpenAI:
                 query=improved_prompt,
                 model="openai"
             )
+
+            articles_str = [str(article) for article in similar_articles]
+
+            for index, (article, score) in enumerate(similar_articles):
+                print(f"{index + 1}. Title: {article.title}, Similarity Score: {score}")
+
+            print("\n\n reranked docs:")
+
+            reranked_data = self.rerank_documents(user_query, articles_str)
+            reranked_docs = []
+
+            for index, result in enumerate(reranked_data.results):
+                reranked_docs.append(similar_articles[result.index])
+
+            for index, (article, score) in enumerate(reranked_docs):
+                print(f"{index + 1}. Title: {article.title}, Similarity Score: {score}")
+
             top_similarity = round(float(similar_articles[0][1]), 4)
-            print(top_similarity)
             if top_similarity < threshold:
                 response = self.generate_response(user_query, context, "basic_answer_prompt.txt")
                 return {
                     'response': response,
                     'sources': []
                 }
+
+
             # 2. Retrieve article contents
-            for article, similarity_score in similar_articles:
+            for article, similarity_score in reranked_docs:
                 if article:
                     context += f"\nCím: {article.title}\nBevezető: {article.lead}\nTartalom: {article.text}\n"
 
@@ -152,6 +174,11 @@ class RAGServiceOpenAI:
         except Exception as e:
             error_msg = f"Error extracting information: {str(e)}"
             raise RuntimeError(error_msg)
+
+    def rerank_documents(self, query, articles, top_n=4):
+        """Improve documents relevance to query before providing them to the generator"""
+        results = self.cohere_client.rerank(model=self.reranker_model, query=query, documents=articles, top_n=top_n)
+        return results
 
     def _extract_entites_from_prompt(self, query):
         nlp = huspacy.load()
