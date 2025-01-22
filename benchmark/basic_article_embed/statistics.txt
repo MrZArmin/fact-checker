@@ -1,0 +1,8 @@
+Benchmark Statistics of basic_article_embed
+==================
+Total Questions: 2
+Correct: 0
+Incorrect: 1
+Uncertain: 1
+Accuracy (excluding uncertain): 0.00%
+Uncertainty Rate: 50.00%

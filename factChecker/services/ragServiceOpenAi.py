@@ -46,7 +46,7 @@ class RAGServiceOpenAI:
         context: str,
         systemPromptTxt: str = "response_prompt.txt",
         temperature: float = 0.4,
-        model: str = "gpt-3.5-turbo",
+        model: str = "gpt-4o-mini",
         max_tokens: Optional[int] = None
     ) -> str:
         """Generate a response using GPT model based on query and context."""
@@ -165,7 +165,7 @@ class RAGServiceOpenAI:
 
             completion = self.client.chat.completions.create(
                 messages=messages,
-                model="gpt-3.5-turbo",
+                model="gpt-4o-mini",
                 temperature=0.4,
             )
 
@@ -195,7 +195,7 @@ class RAGServiceOpenAI:
         self,
         text: str,
         temperature: float = 0.7,
-        model: str = "gpt-3.5-turbo",
+        model: str = "gpt-4o-mini",
     ) -> str:
         """Generate a title for a conversation."""
         try:

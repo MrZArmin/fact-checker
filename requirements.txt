@@ -26,4 +26,5 @@ langchain-openai
 spacy
 huspacy
 cohere
+matplotlib>=3.8.0
 # https://huggingface.co/huspacy/hu_core_news_lg/resolve/main/hu_core_news_lg-any-py3-none-any.whl

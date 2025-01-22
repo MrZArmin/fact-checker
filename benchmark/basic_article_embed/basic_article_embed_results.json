@@ -1,0 +1,19 @@
+{
+    "name": "basic_article_embed",
+    "rag_variation": "v1",
+    "questions": [
+        {
+            "question": "Csökkent-e a külkereskedelmi többlet 625 millió euróra 2014 áprilisában az előző év azonos hónapjához képest?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Nőtt-e a behozatal 4,2 százalékkal 2014 áprilisában az előző évhez képest?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        }
+    ],
+    "accuracy": 0.0
+}

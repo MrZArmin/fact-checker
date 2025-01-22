@@ -1,0 +1,2551 @@
+{
+    "name": "v3_semantic_chunks_with_imporved_prompt",
+    "rag_variation": "v3",
+    "questions": [
+        {
+            "question": "Csökkent-e a külkereskedelmi többlet 625 millió euróra 2014 áprilisában az előző év azonos hónapjához képest?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Nőtt-e a behozatal 4,2 százalékkal 2014 áprilisában az előző évhez képest?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Török Bálint szerint a külkereskedelmi többlet 2014 áprilisában nem volt jelentős összeg?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Nyeste Orsolya szerint 2014 márciusában az export növekedése nem volt kiugró?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Az Emberi Erőforrások Minisztériuma 2014. március 24-én adott ki közleményt Dabason elkészült természettudományos központról?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Az Új Széchenyi Terv keretében készült el a Dabasi Öveges József Természettudományos Központ?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Dabasi Öveges József Természettudományos Központ megvalósítása 500 millió forintba került?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Dabasi Öveges József Természettudományos Központban csak egy ikerlabor található?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Biró Zsolt, a Magyar Polgári Párt elnöke 2014. március 16-án részt vett ünnepi rendezvényeken Sepsiszentgyörgyön, Tusnádfürdőn és Csíkszeredában?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. március 16-án Tusnádfürdőn hangzott el Biró Zsolt ünnepi beszéde?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "A cikk szerint 1848 üzenete nem érvényes 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A cikk szerint Székelyföldön már megvalósult az autonómia 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Csökkent-e a FTSEurofirst 300-as mutató 2014. március 3-án?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Zárva volt-e az athéni tőzsde 2014. március 3-án?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Növekedett-e a frankfurti DAX-30 mutató 2014. március 3-án?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Zárt-e a londoni FTSE-100 mutató magasabban 2014. március 3-án, mint az év végén?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Készült-e tudományos igényű kiadvány a lengyel piacokról szóló visszaemlékezések alapján 2014-ben?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A Kossuth Rádió intendánsa, Pásztor Zoltán elmondta-e, hogy a lengyelpiacok@radio.hu címre több tucatnyi e-mail érkezett?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Volt-e a Báthory-expressz a cikkben említett lengyel piacok helyszíne?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Széna téren, a Kelenföldi pályaudvaron és a Bosnyák téren működtek-e a legismertebb lengyel piacok Debrecenben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Visszafordult-e Klein Dávid a Mount Everest csúcsa előtt 150 méterrel 2014. május 24-én?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Használt-e Klein Dávid oxigénpalackot a Mount Everest megmászásakor 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Klein Dávid 2014-ben elérte-e a Mount Everest csúcsát az első próbálkozás során?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Fordult-e vissza Klein Dávid és Ang Mingma serpa 8700 méteren a Mount Everesten 10 órás mászás után 2014-ben?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Növekedett-e a kiskereskedelmi forgalom Magyarországon 2014 első negyedévében az MTI által megkérdezett elemzők szerint?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Balatoni András szerint 2014-ben meghaladja-e a 7 százalékot a kiskereskedelmi forgalom bővülése az új módszertan szerint?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Volt-e Tóth Gergely szerint az ipari export csökkenése 2014-ben?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Állította-e Balatoni András, hogy 2014-ben a külső kereslet lesz a gazdasági növekedés fő motorja?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Szociáldemokraták Magyar Polgári Pártja Schmuck Andor vezetésével 2014. március 15-én sajtótájékoztatót tartott Budapesten?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Schmuck Andor 2014. március 15-én a budapesti Blaha Lujza téren írta alá az egyéni jelöltek kampánypénz visszafizetéséről szóló dokumentumot?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Szociáldemokraták Magyar Polgári Pártja 2014-ben azt javasolta, hogy a kampánypénzeket az egészségügyi fejlesztésekre fordítsák?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Schmuck Andor pártja 2014-ben azt javasolta, hogy a kampánypénzeket kizárólag oktatási intézmények fejlesztésére fordítsák?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014 áprilisában Oroszországban az éves infláció 7,3 százalék volt?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Az orosz gazdaságfejlesztési minisztérium 2014 áprilisában az inflációs előrejelzését 4,8 százalékról 6 százalékra módosította?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Az orosz jegybank 2014-ben 7-8 százalékos inflációs célt tűzött ki?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014 februárjában Oroszországban az éves infláció 5,2 százalék volt?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Dr. Fazekas Sándor nyert-e a 2014-es országgyűlési választásokon Karcag választókerületében FIDESZ-KDNP színekben?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Czunyiné Dr. Bertalan Judit kapott-e több mint 20.000 szavazatot a 2014-es választásokon Komárom választókerületében?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Nyert-e Iváncsik Imre a Jász-Nagykun-Szolnok megye 1. választókerületében a 2014-es választásokon?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Kapott-e Kiss László több szavazatot, mint Balla Mihály Tibor Balassagyarmat választókerületében a 2014-es választásokon?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Márton Anita 18,63 méteres dobással jutott a döntőbe a 2014-es sopoti fedettpályás világbajnokság súlylökés versenyén?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Baji Balázs 7,63 másodperces idővel jutott az elődöntőbe a 60 méteres gátfutásban a 2014-es sopoti fedettpályás világbajnokságon?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Márton Anita 2014-ben 18,11 méteres dobással jutott a döntőbe a súlylökés versenyén a sopoti világbajnokságon?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Baji Balázs 2014-ben a sopoti világbajnokságon nem jutott be a 60 méteres gátfutás elődöntőjébe?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Mol Magyar Olaj- és Gázipari Nyrt. nyert-e jogosultságot bányászati koncessziós szerződés megkötésére a Battonya-Pusztaföldvár északi területére?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A CEGE Közép-Európai Geotermikus Energia Termelő Zrt. kapott-e jogosultságot geotermikus energia kutatására Jászberény területére?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Érkezett-e pályázat a Kecskemét területére kiírt geotermikus energia kutatási koncesszióra?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A nemzeti fejlesztési miniszter 2013 augusztusában öt szénhidrogén kutatási területre tett-e közzé bányászati koncessziós pályázati felhívást?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Felmondta-e az Opera Australia Tamar Iveri szopránénekesnő szerződését 2014 júniusában homofób bejegyzése miatt?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Volt-e Tamar Iveri szereplése az Otello 2014-es sydneyi előadásaiban az Opera Australia döntése után?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Indított-e petíciót a change.org Tamar Iveri ausztrál vízumának visszavonásáért 2014-ben?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Támogatta-e a Qantas légitársaság és a Mazda-autógyár Tamar Iveri homofób bejegyzését 2014-ben?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Simicskó István szerint Magyarország 2028-ban olimpiát rendezhet-e?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Szalay-Berzeviczy Attila szerint az ország növekedési kilátásainak romlása miatt le kell venni a napirendről az olimpia rendezésének ügyét?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A GKI Gazdaságkutató Zrt. elemzése szerint az Orbán-kormány gazdaságpolitikája megteremti a növekedés tartós alapjait?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A közlemény szerint az Országos Sajtószolgálat anyagait az MTI változtatásokkal továbbítja?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. január 1-jén kezdődött-e az Európai Regionális Fejlesztési Alapból finanszírozott programok irányítási rendszerének átalakítása?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "A Nemzeti Fejlesztési Ügynökség jogutódlással szűnt meg?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Központi Koordinációs Szerv a Miniszterelnökségen kívül jött létre?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Az intézményrendszeri átalakítás 2014. április 15-én kezdődött?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Tartott-e sajtótájékoztatót Ujhelyi István és Steiner Pál 2014. április 9-én Budapesten?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Ujhelyi István és Steiner Pál az MSZP országgyűlési képviselői voltak 2014-ben?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A sajtótájékoztató 2014. április 9-én a Hősök terén zajlott?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Az esemény 2014. április 9-én délután 15 órakor kezdődött?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. június 12-én tartottak-e sajtótájékoztatót a Homo Ludens Project CAR-MEN című produkciójáról Szegeden?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Herczeg Tamás volt-e a Szegedi Szabadtéri Játékok igazgatója 2014. június 12-én?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Homo Ludens Project sajtótájékoztatója Budapesten volt 2014. június 12-én?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Benkő Imola nem volt-e a Homo Ludens Project művészeti vezetője 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A 2014. május 8-i KENÓ-játékban sorsolták-e a 3-as számot?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A 2014. május 8-i KENÓ-játékban sorsolták-e a 70-es számot?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A 2014. május 8-i KENÓ-játékban sorsolták-e a 22-es számot?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A 2014. május 8-i KENÓ-játékban sorsolták-e a 65-ös számot?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Bán Tamás indoklás nélkül kérte-e felmentését a Budapesti Városüzemeltetési Központ igazgatósági elnöki pozíciójából 2014. január 29-én?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Szabadhegyi Péter lett-e londoni nagykövet a Fővárosi Közgyűlés döntése után 2014. január 29-én?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Zsinka László a Budapesti Városüzemeltetési Központ felügyelőbizottságában maradt-e 2014. január 29-e után?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Hutiray Gyula maradt-e a Fővárosi Csatornázási Művek felügyelőbizottságának tagja 2014. január 29-e után?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Tartottak-e megemlékezést Budapesten a nemzeti összetartozás napja alkalmából 2014. június 4-én?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Németh Zsolt a magyar Külügyminisztérium parlamenti államtitkára volt-e 2014-ben?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "A cikk szerint Németh Zsolt nem említette-e a kettős állampolgárság lehetőségét a kárpátaljai magyarok számára?",
+            "expected_answer": false,
+            "result": true,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Németh Zsolt szerint fontos-e, hogy Ukrajna ne legyen képes megvédeni szuverenitását?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014-ben Magyarország volt a Visegrádi Együttműködés soros elnöke?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Prőhle Gergely szerint Magyarország külpolitikai orientációjában nem történt változás 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Prőhle Gergely azt állította, hogy Magyarország nem tartotta fontosnak a keleti kapcsolatok kiaknázását 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A cikk szerint Prőhle Gergely 2014-ben Budapesten tartott előadásában azt mondta, hogy Magyarország teljesen függetlenedett az orosz gáztól?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Marson található Mojave-kráter kevesebb mint ötmillió éve keletkezett?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Földön eddig mintegy 150 Marsról érkezett meteoritot találtak?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A norvég-francia kutatócsoport szerint a shergottitok csak 150-600 millió éve kristályosodtak ki?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Carl Agee szerint a norvég-francia kutatócsoport eredményei teljes mértékben meggyőzőek?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. április 4-én avatták fel az új dunaújvárosi kormányablakot?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Navracsics Tibor miniszterelnök-helyettesként beszélt Dunaújvárosban 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A cikk szerint a közigazgatás 2010-ben volt a legerősebb erkölcsileg?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Navracsics Tibor szerint a közigazgatás tárgyi feltételei 2010 óta nem javultak?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Brendan Rodgers edzője volt az FC Liverpoolnak 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Liverpool utoljára 1990-ben nyerte meg a bajnoki címet 2014-ig?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Liverpool 2014. május 5-én nyerni tudott a Crystal Palace ellen?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Manchester Citynek csak egy mérkőzése volt hátra 2014. május 6-án a bajnokságból?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. július 11-én a Külgazdasági és Külügyminisztérium közölte, hogy nincs járványveszély Horvátországban?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "1995-ben a horvát egészségügyi szakemberek szerint háromszáz esetet regisztráltak egérlázzal?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Külgazdasági és Külügyminisztérium szerint 2014-ben 120 ezer ember kapta el az egérlázat Horvátországban?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Az egérláz emberről emberre terjed Horvátországban?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A görög Kis Anglia nyerte el a legjobb film díját a 17. Sanghaji Nemzetközi Filmfesztiválon 2014-ben?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Pantelisz Voulgarisz kapta a legjobb rendező díját a 2014-es Sanghaji Nemzetközi Filmfesztiválon?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "A 2014-es Sanghaji Nemzetközi Filmfesztiválon a Győzelem Bácsi című filmet mutatták be Kínában?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A Sanghaji Nemzetközi Filmfesztivál 2014-ben volt az első alkalom, hogy egy nő, Kuang Li elnökölte a zsűrit?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Aláírják-e a koalíciós szerződést a Vajdasági Magyar Szövetség (VMSZ) és a Szerb Haladó Párt (SNS) között 2014 áprilisában?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Volt-e Pásztor István szerint a Vajdasági Magyar Szövetség (VMSZ) képviselőinek száma hat a szerb parlamentben 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Kapott-e a Vajdasági Magyar Szövetség (VMSZ) miniszteri pozíciókat a szerb kormányban 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Egyeztetett-e a Vajdasági Magyar Szövetség (VMSZ) a Szerb Haladó Párttal (SNS) a koalíciós tárgyalások során 2014 márciusában?",
+            "expected_answer": false,
+            "result": true,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Alekszandr Szjomin váltotta-e Szergej Szoint az orosz jégkorong-válogatottban a 2014-es szocsi olimpián?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Szerzett-e Alekszandr Szjomin 9 gólt a 2014-es szezonban?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Szergej Szoin játszott-e a Carolina Hurricanes csapatában 2014-ben?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Alekszandr Szjomin 36 mérkőzésen 20 gólpasszt adott a 2014-es szezonban?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "2014. március 25-én alkotmányellenesnek nyilvánította-e a spanyol alkotmánybíróság a Katalónia függetlenségéről szóló népszavazást?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. november 9-re tervezték-e a katalán függetlenségi referendumot?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A spanyol alkotmány lehetőséget ad-e arra, hogy egy tartomány egyoldalúan népszavazást írjon ki az önrendelkezésről?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Támogatta-e a spanyol központi kormányzat a katalán függetlenségi népszavazást?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Nőtt-e a foglalkoztatottak száma 2014 február-április között az előző év azonos időszakához képest?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "2014 első negyedévében 4,078 millió volt-e a foglalkoztatottak száma Magyarországon?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Csökkent-e a foglalkoztatási arány a 15-74 éves korosztályban 2014 február-április között?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "2014 február-április között a 15-74 éves korosztályban 3,2 százalékponttal romlott-e a foglalkoztatási arány?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Halálra gázolt egy 12 éves fiút egy autóbusz Zagyvaszántón 2014. május 14-én?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Az eset Zagyvaszántón történt, ahol a menetrend szerint közlekedő autóbusz egy gyereket sodort el?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "A baleset 2014. május 14-én történt Zagyvaszántón egy vonattal?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A baleset során a gyerek azonnal meghalt a helyszínen Zagyvaszántón 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Játszott-e február 20-án Juventus a Trabzonspor ellen az Európa Ligában 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Volt-e mérkőzés február 20-án Maribor és Sevilla között az Európa Ligában 2014-ben?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Játszott-e február 21-én a Bayern München a Lokomotív Kuban ellen a kosárlabda Euroligában 2014-ben?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Volt-e mérkőzés február 20-án az Ajax és a Salzburg között az Európa Ligában 2014-ben?",
+            "expected_answer": false,
+            "result": true,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Tanult-e 2013-2014-es tanévben mintegy 230 magyarországi diák a kolozsvári Babes-Bolyai Tudományegyetem magyar tannyelvű szakjain?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Volt-e 2013-2014-es tanévben a kolozsvári Babes-Bolyai Tudományegyetemen pszichológiát tanuló elsőévesek közül 25 magyarországi?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Fizettek-e a magyarországi diákok teljes tandíjat a kolozsvári Babes-Bolyai Tudományegyetem magyar tannyelvű szakjain 2013-2014-es tanévben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Tanult-e a kolozsvári Babes-Bolyai Tudományegyetemen 2013-2014-es tanévben kevesebb mint 10 magyarországi doktorandusz?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014-ben a Magyar Nemzet szerint 550 ezer gyermek részesülhetett ingyenes étkeztetésben a nyáron Magyarországon?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Az Emberi Erőforrások Minisztériumának rendelettervezete szerint 2014-ben 2,64 milliárd forintot biztosítottak az önkormányzatoknak az ingyenes nyári gyermekétkeztetésre?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Magyar Nemzet cikke szerint 2014-ben az önkormányzatoknak nem kellett május 9-ig felmérniük az ingyenes nyári gyermekétkeztetés igényeit?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014-ben a Magyar Nemzet cikke szerint az önkormányzatoknak nem kellett legalább 30 százalékot helyi termelőktől származó beszerzésre fordítaniuk az étkeztetés alapanyagára szánt összegből?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014-ben május 30-tól kitiltják a dohányboltokat a 2500 négyzetméternél nagyobb alapterületű Tesco üzletekből?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Mol és az Auchan is veszít dohányboltokat a 2014-es új rendelkezés miatt?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A 2014-es rendelkezés szerint a Tesco összes dohányboltja folytathatja működését 2500 négyzetméternél nagyobb üzletekben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Nemzeti Dohánykereskedelmi Nonprofit Zrt. szerint a hipermarketekben, plázákban és benzinkutakon működő 200 dohánybolt a piaci forgalom 50 százalékát tette ki 2014-ben?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Kisorsolták-e a 19-es számot a 2014. július 4-ei KENÓ-játékban?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Szerepelt-e a 39-es szám a 2014. július 4-ei KENÓ nyerőszámai között?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Kisorsolták-e a 45-ös számot a 2014. július 4-ei KENÓ-játékban?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Szerepelt-e a 70-es szám a 2014. július 4-ei KENÓ nyerőszámai között?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Spanyolország megnyerte a 2010-es labdarúgó-világbajnokságot?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A spanyol labdarúgó-válogatott megnyerte a 2008-as Európa-bajnokságot?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Bobby Charlton szerint Brazília világbajnok esélyes volt a 2014-es tornán világklasszis játékosok miatt?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Uruguay és Argentína nem szerepeltek Bobby Charlton szerint a spanyolok világbajnoki címvédésének akadályozói között 2014-ben?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Elítélte-e az ENSZ Emberi Jogi Tanácsának vizsgálóbizottsága a szíriai kormányerők által alkalmazott ostromzárakat 2014. március 5-én?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Használt-e a szíriai hadsereg vegyi fegyvereket a Gúta térségben 2013. augusztus 21-én?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A szíriai-libanoni határtól tizenkét kilométerre található település lakói erősen támogatták-e a Bassár el-Aszad szíriai elnökhöz hű erőket?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Kért-e Michel Szulejman libanoni államfő támogatást a szíriai menekültáradat miatt a nemzetközi közösségtől Párizsban?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. február 15-én 16 óráig jelentkezhettek-e az országos kereskedelmi rádiók és tévék a Nemzeti Választási Bizottságnál politikai reklám közzétételére?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A politikai reklám közzétételéért kérhet-e ellenszolgáltatást a médiaszolgáltató a választási kampányidőszakban?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Tilos-e véleményt fűzni a politikai reklámhoz a magyar választási szabályok szerint?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A választási eljárásról szóló törvény szerint az országosan elérhető lineáris médiaszolgáltatók politikai reklámot csak pénzért tehetnek közzé?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Az ukrán parlament 2014. március 4-én ratifikálta az Európai Unióval kötött hitelmegállapodásról szóló memorandumot?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Az ukrán parlament ülésén 281 képviselő támogatta a hitelmegállapodás ratifikálását 2014. március 4-én?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Az ukrán parlament 2014. március 4-én 500 millió eurós hitelhez jutott az EU-tól?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Christine Lagarde elutasította az IMF szakértőinek Ukrajnába küldését 2014 márciusában?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Orbán Viktor 2014-ben vett részt a magyar és szlovák földgázhálózat összekapcsolásának ünnepségén Szada mellett?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Bajnai Gordon kritizálta-e a kormányt az E.ON gáztározók visszavásárlásának költségei miatt?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Bajnai Gordon szerint a magyar adófizetők tudják az E.ON gáztározók visszavásárlásának pontos költségeit?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A cikk szerint Bajnai Gordon szerint Orbán Viktor az alapkövét tette le a Szada melletti beruházásnak?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A krími tatárok saját népszavazást készítettek elő a félsziget státusáról 2014 áprilisában?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A krími tatárok népszavazását Musztafa Dzsemiljev és Refat Csubarov is kezdeményezte?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A 2014. március 16-i krími népszavazás eredményét Kijev elismerte?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Krími Autonóm Köztársaság lakosságának 24 százaléka vallotta magát krími tatár nemzetiségűnek a 2001-es népszámlálás szerint?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Zárt-e 15 077 ponton a japán Nikkei-225 index 2014. június 6-án Tokióban?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Volt-e nemzeti szünnap miatt szünet a tőzsdei kereskedés 2014. június 6-án Szöulban?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A sanghaji tőzsde erősödött-e 2014. június 6-án?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Csökkent-e heti szinten az ausztrál S&P/ASX-200 index 2014. június 6-án?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "2014 februárjában Csehországban 0,2 százalékos volt az éves infláció?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "2014 februárjában a cseh munkanélküliségi ráta 8,6 százalék volt?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Prágában 2014 februárjában 11,9 százalékos volt a munkanélküliségi ráta?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Csehország külkereskedelme 2014 januárjában hiánnyal zárt?",
+            "expected_answer": false,
+            "result": true,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Kapott-e az AKP 48 százalékot a 2014-es török helyhatósági választásokon a szavazatok 18 százalékának kiértékelése alapján?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Volt-e nyolc halálos áldozata a 2014-es török helyhatósági választások alatt történt fegyveres összecsapásoknak két délkeleti tartományban?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Erdogan pártja, az AKP 2002-ben kevesebb mint 30 százalékos támogatottsággal nyert a választásokon?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Több mint 30 politikai párt indult a 2014-es török helyhatósági választásokon?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Sátántangó című filmet 1994. április 28-án mutatták be Magyarországon?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Víg Mihály a Sátántangó zeneszerzője és egyik főszereplője?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Sátántangó film színes képi világgal készült?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Sátántangó című filmet Tarr Béla és Susan Sontag közösen rendezték?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Németországban 2014-ben elítéltek-e egy ruandai férfit népirtásban való közreműködés miatt?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Onesphore Rwabukomba 2002-ben kért-e menedékjogot Németországban?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A bíróság ítélete szerint Onesphore Rwabukomba kizárólag a tuszi népirtás elkövetésében vett részt?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Volt-e jogerős az ítélet, amelyet a német bíróság 2014-ben hozott Onesphore Rwabukomba ügyében?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Tartott-e sajtótájékoztatót a Közösség a Társadalmi Igazságosságért Néppárt 2014. február 7-én Budapesten?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Budapesten volt-e a Közösség a Társadalmi Igazságosságért Néppárt sajtótájékoztatója 2014. február 7-én a Paks 2 alternatívájáról?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Közösség a Társadalmi Igazságosságért Néppárt sajtótájékoztatója 2014. február 7-én a Fenntartható Fejlődés Bizottsága helyett a Parlament épületében volt?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. február 7-én a Közösség a Társadalmi Igazságosságért Néppárt sajtótájékoztatóján a környezetvédelem volt a fő téma?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Bemutatta-e Jennifer Francis klímakutató a kutatását az AAAS éves szakkonferenciáján Chicagóban 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Gyorsabban melegedett-e az Arktisz az elmúlt évtizedekben, mint a Föld többi része?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A 2014-es AAAS éves szakkonferenciát Párizsban rendezték meg?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Az Északi-sarkvidék felmelegedése nem befolyásolja Európa klímáját?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2011 eleje óta készen van-e a Rácfürdő?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "2010-ben lépett hivatalba az új budapesti városvezetés?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Rácfürdő 2005-ben indult beruházása kizárólag a főváros finanszírozásával valósult meg?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2009-ben nyitották meg az újjáépített Rácfürdőt?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "2014. június 5-én az Országos Meteorológiai Szolgálat előrejelzése szerint a pünkösdi hosszú hétvégén akár 32 Celsius-fokig is emelkedhetett a hőmérséklet Budapesten?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Az Országos Meteorológiai Szolgálat szerint 2014. június 5-én a pünkösdi hétvége előrejelzése alapján a vasárnapi maximumhőmérséklet 28-32 fok között alakulhatott?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "2014. június 5-én az MTI által közölt előrejelzés szerint pénteken számottevő csapadék volt várható Budapesten?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A 2014. június 5-i előrejelzés szerint pünkösdhétfőn a legalacsonyabb hőmérséklet 9-14 fok között lehetett?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "2014. június 2-án fogadta el a magyar parlament azt a házszabály-módosítást, amely lehetővé teszi az ülésvezető elnök számára, hogy szavazhasson az Országgyűlés plenáris ülésein?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Rogán Antal volt a Fidesz frakcióvezetője, aki javasolta, hogy az ülésvezető elnök is szavazhasson a magyar Országgyűlés ülésein?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "A házszabály-módosítást 128 nem és 53 igen szavazattal fogadták el a magyar parlamentben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Az ülésvezető elnök eddig is minden nyílt szavazáson szavazhatott az Országgyűlésben, függetlenül a szavazategyenlőségtől?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Szolnoki Olaj férfi kosárlabda csapata a negyedik helyen végzett a 2014-es Eurochallenge Kupában?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A bolognai Final Four 2014-es bronzmérkőzésén a Gaziantep hosszabbítás után győzte le a Szolnoki Olajt?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Szolnoki Olaj 2014-es Eurochallenge bronzmérkőzésén győzött a Gaziantep ellen hosszabbítás után?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Szolnoki Olaj 2014-ben megnyerte az Eurochallenge Kupát?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. január 7-én történt-e halálos gázolás a Budapest-Cegléd-Debrecen vasútvonalon?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A baleset Fegyvernek-Örményes és Törökszentmiklós között történt-e?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A baleset miatt a vonatok 30-40 perces késéssel közlekedtek a Budapest-Cegléd-Debrecen vonalon?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A baleset egy nem működő fénysorompós vasúti átjáróban történt?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Falusz Zsolt Ferenc volt az Egyesület elnöke 2014-ben?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A Bankcsapda Érdekvédelmi Civil Szervezet közleménye 2014. július 11-én jelent meg?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "A közlemény szerint a Magyar Nemzeti Bank forinterősödéssel szembeni pozíciója nem említődik?",
+            "expected_answer": false,
+            "result": true,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Az OS jelzéssel ellátott közleményekért az MTI felelős?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Kérte-e az MSZP 2014. január 15-én, hogy függesszék fel a Hortobágyi Nemzeti Park legelőinek bérbeadását?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Felszólította-e Gőgös Zoltán 2014-ben a Vidékfejlesztési Minisztériumot a szerződések megkötésének leállítására a gazdák panaszainak kivizsgálásáig?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Volt-e Fazekas Sándor az MSZP szerint a Hortobágyi földmutyival megkárosított gazdák csoportjának tagja?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Az MSZP közleménye szerint a nyertesek mind valós állattartók voltak 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Felrobbantották-e a Ferenc József hidat Budapest ostroma alatt 1945. január 16-án?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Indult-e útnak a Columbia űrsikló 2003. január 16-án a világ első izraeli űrhajósával a fedélzetén?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Halt-e meg Mikszáth Kálmán író 1847. január 16-án?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Gyújtotta-e fel magát Jan Palach Prágában 1970. január 16-án?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014-ben fedezték-e fel Szenebkaj fáraó sírját Abüdosz dél-egyiptomi régészeti lelőhelyen?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Szenebkaj királyról eddig semmit sem tudott a régészet a felfedezés előtt?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Találtak-e múmiát Szenebkaj sírjában?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A Pennsylvaniai Egyetem régészcsoportjának vezetője Josef Wegener volt-e a Szenebkaj sírja felfedezésekor?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Tőkés László 2014-ben Washingtonban tárgyalt az amerikai kongresszus Tom Lantosról elnevezett emberi jogi bizottságának társelnökeivel?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Tőkés László az Amerikai Magyar Koalíció meghívására látogatott Washingtonba az EP-választás után?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Tőkés László találkozott az ukrajnai válság kiváltó okainak megoldására irányuló amerikai bizottság tagjaival Washingtonban 2014-ben?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A román állam a kisebbségi egyházi vagyon háromnegyedét visszaszolgáltatta Tőkés László szerint?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014-ben Tunézia volt az Utazás kiállítás díszvendége Budapesten?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A 2014-es Utazás kiállítást február 27. és március 2. között rendezték meg Budapesten?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A 2014-es Utazás kiállítás díszvendégei között nem szerepelt Pécs?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A 2014-es Utazás kiállításon több mint 1000 kiállító vett részt Budapesten?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Kimi Räikkönen volt-e a leggyorsabb a 2014-es Forma-1-es szezon első hivatalos tesztjének nyitónapján Jerezben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Sebastian Vettel tett-e mért kört a 2014-es Forma-1-es szezon első tesztnapján Jerezben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Lewis Hamilton a 2014-es Forma-1-es szezon első tesztnapján Jerezben 1:27.104 perces időt futott-e?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A 2014-es Forma-1-es szezon első tesztjén Jerezben a csapatok 1,6 literes turbómotorokat használtak-e?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Kiesett-e Serena Williams a 2014-es Roland Garros női egyes versenyéből Garbine Muguruza ellen?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Játszott-e Garbine Muguruza a 2014-es Roland Garros második fordulójában Serena Williams ellen?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Nyert-e Venus Williams a 2014-es Roland Garros második fordulójában Schmiedlova ellen?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Megnyerte-e Serena Williams a 2014-es Roland Garros női egyes versenyét?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Thomas Hässler lett-e az iráni Padideh Masad labdarúgócsapatának vezetőedzője 2014-ben?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Thomas Hässler 1990-ben lett-e világbajnok a német válogatottal?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Thomas Hässler 2020-ban lett-e Európa-bajnok a német válogatottal?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Thomas Hässler 1984-ben játszott-e a szöuli olimpián?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Solymár Károly Balázs infokommunikációért felelős helyettes államtitkár volt jelen a 2014-es budapesti szakmai konferencián?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A kormányzati hitelesítés szolgáltatás bevezetését említette a helyettes államtitkár a 2014-es konferencián?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A konferencián elhangzott, hogy a magyar lakosság több mint fele digitálisan írástudó?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Az NFM közleménye szerint a nemzeti mobilfizetés kizárólag a magánszféra bevonása nélkül valósult meg?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Koszovó 2008-ban kiáltotta-e ki elszakadását Szerbiától?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Enver Hoxhaj koszovói külügyminiszter szerint Koszovó célja 2020-ra az ENSZ tagjává válni?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Elismeri-e Szerbia, Oroszország és Kína Koszovó függetlenségét?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2020-ban lett-e Koszovó az ENSZ tagja?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Ausztrália volt az első külföldi csapat, amely megérkezett a 2014-es labdarúgó-világbajnokságra?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Az ausztrál válogatott a 2014-es labdarúgó-világbajnokságon a B csoportban szerepelt?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Ausztrália a 2014-es labdarúgó-világbajnokságon az A csoportban játszott?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Az ausztrál válogatott 2014-ben először vett részt labdarúgó-világbajnokságon?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Jégvarázs nyerte-e a legjobb egészestés animációs film díját a 86. Oscar-gálán 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A 20 Feet from Stardom című film lett-e a legjobb dokumentumfilm a 86. Oscar-gálán?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Gravitáció nyerte-e a legjobb rövidfilmért járó Oscar-díjat 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Alice Herz-Sommer, a The Lady in Number 6 című film 110 éves hőse, az Oscar-díjátadó előtt hunyt el?",
+            "expected_answer": false,
+            "result": true,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Nyert-e Simonka György a 2014-es választásokon Békés megye 4. választókerületében?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Szerezett-e mandátumot Simonka György a 2014-es választásokon Békés megye 4. választókerületében?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Kapott-e Varga Zoltán több szavazatot, mint Simonka György a 2014-es választásokon Békés megye 4. választókerületében?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Volt-e Csanyi Renáta Ibolya a szavazólapon a 2014-es választásokon Békés megye 4. választókerületében?",
+            "expected_answer": false,
+            "result": true,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Az északnyugat-kambodzsai Sziemreap tartományban több mint 80 régészeti lelőhelyet azonosítottak lengyel régészek 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A lengyel régészek drónokat is használtak a régészeti feltárások során Kambodzsában 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A lengyel régészek által azonosított lelőhelyek mind négyszögletű településszerkezetet mutattak Kambodzsában?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A kutatás során a lengyel régészek kizárólag műholdképeket használtak, és nem végeztek terepmunkát Kambodzsában?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "1924. március 15-én hangzott el az első magyar kísérleti rádióműsor?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "1925. december 1-jén indult meg a rendszeres rádióműsorszórás Magyarországon?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Az első magyar rádióműsort Budapestről sugározták középhullámon?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Az első rádióújság Magyarországon 1925-ben jelent meg először?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Minnesota Wild 2014. május 7-én győzte le a Chicago Blackhawks csapatát 4-0-ra az NHL Nyugati főcsoportjának elődöntőjében?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Mikael Granlund két gólt szerzett a 2014. május 7-i Minnesota Wild és Chicago Blackhawks közötti mérkőzésen?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "2014. május 7-én a Boston Bruins 4-2-re nyert a Montreal Canadiens ellen az NHL Keleti főcsoportjának elődöntőjében?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. május 7-én a Chicago Blackhawks előnyben volt a Minnesota Wild ellen az NHL Nyugati főcsoportjának elődöntőjében?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Hende Csaba az első magyar védelmi miniszter, aki hivatalos tárgyalást folytatott Dél-Koreában 2013-ban?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Hende Csaba 2013 novemberében Szöulban folytatott tárgyalást Kim Kvan Dzsin dél-koreai védelmi miniszterrel?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Hende Csaba 2013-ban Japánban fejezte be távol-keleti körútját?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Történt-e a 2013-as év során védelmi megállapodás tárgyalás Magyarország és Kína között Hende Csaba részvételével?",
+            "expected_answer": false,
+            "result": true,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Nyert-e a magyar férfi kézilabda-válogatott 2014. június 8-án Szlovénia ellen Veszprémben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Szerzett-e Harsányi Gergely kilenc gólt a 2014-es kézilabda vb-selejtező mérkőzésen Szlovénia ellen?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Játszott-e a visszavágó mérkőzés Veszprémben?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Volt-e elégedett Mocsai Lajos a csapat játékával a mérkőzés után?",
+            "expected_answer": false,
+            "result": true,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Állította-e Martin József Péter, hogy a közpolitikai átláthatóság siralmas Magyarországon 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Tartott-e sajtótájékoztatót Martin József Péter Budapesten 2014. március 27-én?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A Transparency International Magyarország ügyvezető igazgatója szerint felszámolták a korrupciót Magyarországon 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Költségvetési Felelősségi Intézet nem vett részt a rendezvényen, amelyet a Transparency International Magyarország szervezett 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Szerezett-e Neymar gólt a Brazília - Kolumbia mérkőzésen 2014-ben?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Volt-e kiállítás a Franciaország - Németország mérkőzésen 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Végezt-e el több szögletet Brazília, mint Kolumbia a 2014-es mérkőzésükön?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Nyerte-e meg az Argentína - Belgium mérkőzést Argentína 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Felszólította-e Benjámin Netanjahu 2014-ben a nemzetközi közösséget, hogy gyakoroljon nyomást Mahmúd Abbászra a zsidó állam elismerése érdekében?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Hivatkozott-e Netanjahu a gazdasági bojkottal is fenyegető nemzetközi nyomásra a 2014-es frakcióülésen?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Ismerte-e el Mahmúd Abbász Izraelt zsidó nemzetállamként a New York Timesban 2014-ben megjelent interjújában?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Volt-e szó a cikkben arról, hogy Mahmúd Abbász 2014-ben elfogadta Izrael zsidó nemzetállamként való elismerését?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Állított-e fel negatív klubrekordot a Hamburger SV azzal, hogy sorozatban hat mérkőzést veszített el a Bundesliga 51 éves történetében először?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Nyert-e a Hertha BSC 3-0-ra a Hamburg vendégeként a német labdarúgó-bajnokság 20. fordulójának szombati játéknapján?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Győzött-e a Borussia Mönchengladbach a Bayer Leverkusen ellen a 20. forduló pénteki mérkőzésén?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Vezeti-e a Bayer Leverkusen a Bundesliga tabelláját 53 ponttal a 20. forduló után?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. február 26-án a Feröer-szigetek felett ciklon örvénylik?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Csendesebb az idő Kelet-, Északkelet-Európában 2014. február 26-án?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Volt-e 2014. február 26-án fagypont alatti csúcshőmérséklet a kontinens keleti, északkeleti részén?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "2014. február 26-án a Kárpát-medencében már csütörtök reggel elérte a frontrendszer?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Indított-e jogsegélyszolgálatot az LMP 2014-ben a földpályázatokon vesztes gazdáknak?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Hivatkozott-e Lengyel Szilvia Ángyán József jelentésére a földbérleti pályázatok ügyében 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Volt-e Lengyel Szilvia a pénzügyminisztérium államtitkára 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Nyilvánították-e vesztesnek a földbérleti pályázatokat politikai alapon a cikk szerint?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Szijjártó Péter 2014. július 8-án kitüntette-e a szaúdi nagykövetet Budapesten?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Nabíl bin Halaf bin Ahmed Ásúr öt évig szolgált-e Magyarországon szaúd-arábiai nagykövetként?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "2014-ben Magyarország volt-e Szaúd-Arábia legnagyobb kereskedelmi partnere az arab világban?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A cikk szerint Szijjártó Péter az Egyesült Arab Emírségek nagykövetét tüntette-e ki Budapesten?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. január 14-én írtak-e alá magyar-orosz kormányközi megállapodást a nukleáris energia békés célú felhasználásáról Moszkvában?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A paksi erőmű bővítéséhez nyújtott orosz hitel felső határát 10 milliárd euróban állapították-e meg?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A paksi bővítés költségeit kizárólag az orosz fél fogja fedezni?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A paksi erőmű bővítéséről szóló előszerződés kizárólag a reaktorok megépítésére vonatkozik?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Emelkedett-e a Dow Jones index 2014. május 7-én, szerdán?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Nőtt-e az S&P 500-as mutató 2014. május 7-én, szerdán?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Csökkent-e a Nasdaq Composite mutató 2014. május 7-én, szerdán?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Emelkedett-e a Nasdaq Composite mutató 2014. május 7-én, szerdán?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Mesterházy Attila 2014. május 18-án Nyíregyházán tartott sajtótájékoztatót?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Az MSZP elnöke szerint a pártja a józan ész politikáját követi az Európai Parlamentben?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A cikk szerint Mesterházy Attila támogatja a Jobbik unióból való kilépési tervét?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A cikk szerint Mesterházy Attila úgy véli, hogy a Fidesz politikája növeli Magyarország nemzeti érdekérvényesítésének hatékonyságát?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014. április 1-jén a Fehér Ház bejelentette, hogy több mint 7 millióan csatlakoztak az Obamacare rendszerhez?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Az Obamacare rendszer csatlakozási határideje 2014. március 31-én járt le?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Az amerikai egészségügyi reform, ismertebb nevén Obamacare, 2012-ben lépett hatályba?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "2014-ben az Obamacare reform keretében csak egyetlen állam használta a HealthCare.gov szövetségi portált?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Elrendelte-e az ukrán haderő riadókészültségbe helyezését Olekszandr Turcsinov 2014. március 1-én?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Engedélyezte-e az orosz parlament a katonai erő alkalmazását Ukrajna területén Vlagyimir Putyin kérésére 2014. március 1-én?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Volt-e Olekszandr Turcsinov az ukrán haderő parancsnoka 2014. március 1-én?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Riadókészültségbe helyezték-e az ukrán haderőt 2014. március 1-én egy parlamenti szavazás után?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Aláírta-e 2014 januárjában Magyarország és Oroszország a nukleáris energetikai megállapodást?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Tartott-e Orbán Viktor miniszterelnök munkalátogatást Oroszországban 2014 januárjában?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Hirdetett-e Magyarország pályázatot a paksi atomerőmű bővítésére 2014 előtt?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Volt-e kibékíthetetlen politikai ellentét Orbán Viktor és Vlagyimir Putyin között 2014-ben?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Marine Le Pen 2014. május 25-én követelte a francia nemzetgyűlés feloszlatását?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "2014-ben a Nemzeti Front 25 százalékos eredményt ért el az európai parlamenti választásokon?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Laurent Fabius 2014-ben támogatta Marine Le Pen felhívását a francia nemzetgyűlés feloszlatására?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Jean-Francois Copé 2014-ben egyetértett Marine Le Pen javaslatával az arányos választási rendszer bevezetésére?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Csökkent-e a Dow Jones ipari átlag 2014. január 22-én New York-ban?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Emelkedett-e a Nasdaq Composite mutató 2014. január 22-én New York-ban?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Zárt-e az S&P 500-as mutató 2000 pont felett 2014. január 22-én New York-ban?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Nőtt-e 1 százalékkal a Dow Jones ipari átlag 2014. január 22-én New York-ban?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A baleset Kolozsvár belvárosában történt 2014. február 18-án késő este?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "A 17 éves áldozat szabálytalanul kelt át az úttesten, amikor a baleset történt?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A balesetet okozó autó vezetője magyar állampolgár volt?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A fiatalember állapota életveszélyes volt a baleset után?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Zárt-e pénteken 17 965,25 ponton a BUX 2014 áprilisában?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Emelkedett-e mintegy 120 ponttal a BUX hétfőn 2014 áprilisában?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Csökkent-e a Richter-papírok értéke a héten 2014 áprilisában?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Zárt-e 4310 forinton az OTP-részvények ára 2014 áprilisában a héten?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Csökkent-e a beszerzésimenedzser-index (BMI) értéke 2013 decemberében novemberhez képest Budapesten?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Haladta-e meg a beszerzésimenedzser-index (BMI) értéke az 50-es határt öt hónapja?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Volt-e a beszerzésimenedzser-index (BMI) értéke 52,5 pont vagy annál magasabb 2013 decemberében?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Emelkedtek-e a vizsgált részindexek a Magyar Logisztikai, Beszerzési és Készletezési Társaság (MLBKT) felmérésében 2013 novemberéhez képest?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Dohnányi Ernő 1949 és 1960 között a floridai Tallahassee városában élt és tanított?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Sean McGlynn, Dohnányi Ernő mostohaunokája adományozta Magyarországnak a hagyaték házban maradt részét?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Dohnányi-hagyaték jelenleg csak Magyarországon található gyűjteményekben van elhelyezve?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Dohnányi Archívum 2002-es megalakulása óta folyamatosan működött támogatások segítségével?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Bronzérmet szerzett-e a magyar serdülő lánycsapat a 2014-es Riva del Gardában rendezett utánpótlás asztalitenisz Európa-bajnokságon?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Vereséget szenvedett-e a magyar serdülő lánycsapat a németektől a 2014-es utánpótlás asztalitenisz Európa-bajnokság helyosztóján?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Az ifjúsági fiúk csapata az első helyen végzett-e a 2014-es utánpótlás asztalitenisz Európa-bajnokságon?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A serdülő fiúk csapata a 10. helyen végzett-e a 2014-es utánpótlás asztalitenisz Európa-bajnokságon?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Az MVM NET Zrt. nyerte meg a 450 megahertzes frekvenciapályázatot 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A 450 megahertzes frekvenciasáv pályázati díját minimum 150 millió forintban határozták meg?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Tíz hónap áll az MVM NET Zrt. rendelkezésére a hálózat első ütemének kialakítására?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A pályázatot 2015 decemberében hirdették meg a 450 megahertzes frekvenciasávra?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Csökkentek-e a jegybank nemzetközi tartalékai 195 millió euróval 2014 júniusában?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Nőtt-e a devizatartalékok összege 2,296 milliárd euróval 2014 első félévében?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Járt-e le egy félmilliárd angol font értékű tízéves államkötvény 2014 júniusában?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Tervben volt-e 2014-ben újabb devizakötvény-kibocsátás a kormány által?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Szerzett-e a Fidesz kétharmados parlamenti többséget a 2014-es magyar parlamenti választásokon?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Tagja-e a Fidesz a konzervatív Európai Néppártnak a cikk szerint?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Utal-e a Der Standard arra, hogy Orbán Viktor kormányzása során nem korlátozták az Alkotmánybíróság jogait?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Állítja-e a Neue Zürcher Zeitung, hogy a Jobbik gyengült az elmaradt régiókban?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Horvátországban megszüntették az árvíz miatt elrendelt rendkívüli helyzetet Bród-Szávamente megyében?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Thaiföldön a hadsereg felfüggesztette az alkotmányt és átvette a hatalmat?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Oroszország és Kína támogatta az ENSZ Biztonsági Tanácsában a Nemzetközi Büntetőbíróság szíriai kivizsgálását?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Az amerikai képviselőház megszavazta, hogy az NSA továbbra is gyűjtse a telefonhívások metaadatait?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Emelkedett-e 2014. április 14-én a FTSEurofirst 300 záró értéke az előző naphoz képest?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "2014. április 14-én a párizsi CAC-40 index magasabb volt-e, mint a pénteki záróértéke?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Csökkent-e a frankfurti DAX-30 index 2014. április 14-én az előző záróértékhez képest?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Volt-e 0,50 százaléknál nagyobb a londoni FTSE-100 index növekedése 2014. április 14-én?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "2014. március 28-án Kínában egy közlekedési balesetben 16 ember halt meg?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Csungking városi szakaszán történt balesetben 55-en sérültek meg?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "A Sanhszi tartományban történt baleset során 31 ember sérült meg és kilenc ember halt meg?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Paotou-Maoming autópályán történt baleset során csak egy teherautó ütközött a felborult busszal?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Megemlékezett-e a lengyel szejm a lengyel-török diplomáciai kapcsolatok hatszázadik évfordulójáról 2014. április 2-án?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Kötött-e Lengyelország és Törökország örök békét 1533-ban?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Részt vett-e Törökország Lengyelország felosztásában a XVIII. század végén?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Támogatja-e Lengyelország Ankara EU-tagságát a szejm határozata szerint?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Vissza kellett-e térnie a Lufthansa Münchenből Budapestre tartó járatának 2014. április 1-jén egy incidens miatt?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Letartóztatták-e a koszovói férfit a fedélzeten a Münchenből Budapestre tartó Lufthansa járaton 2014. április 1-jén?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Történt-e az incidens Budapesten a Lufthansa járatán 2014. április 1-jén?",
+            "expected_answer": false,
+            "result": true,
+            "status": "Incorrect"
+        },
+        {
+            "question": "A pilóta folytatta-e az útját Budapestre a Lufthansa járatán a támadás után 2014. április 1-jén?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A 2014-es szerbiai parlamenti választásokra március 16-án került sor?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Vajdasági Magyar Szövetség (VMSZ) önállóan indult a 2014-es szerbiai parlamenti választásokon?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Szerb Haladó Párt (SNS) baloldali ideológiát képvisel a 2014-es szerbiai választásokon?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Ivica Dacic nem volt miniszterelnök a 2014-es szerbiai választások előtt?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Fizetett-e Ukrajna 2 milliárd dollárt csütörtök éjfélig Oroszországnak 2014 májusában?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Alekszandr Novak az orosz energiaügyi miniszter volt 2014-ben?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Kért-e Ukrajna árcsökkentést az Oroszországtól szállított földgázra 2014 májusában?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "Volt-e fennakadás a gázszállításokban Ukrajna fizetési elmaradása miatt 2014 februárjától májusáig?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Kiderült-e egy per tárgyalásán, hogy Lázár János és munkatársa közel kétmillió forintot költött szállásra három utazáson?",
+            "expected_answer": true,
+            "result": false,
+            "status": "Incorrect"
+        },
+        {
+            "question": "Visszafizeti-e Lázár János a három utazás költségeit a költségvetésnek?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Juhász Péter szerint Lázár János visszafizetése teljesítette a kötelességét?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Az Együtt-PM azt várja, hogy Lázár János legyen az új kabinet tagja?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "Kezdeményezett-e Bitay Márton ügyészségi vizsgálatot a Kishantosi Vidékfejlesztési Központ Közhasznú Kft. ellen 2014-ben?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Mondta-e Bitay Márton, hogy a Székesfehérvári Járásbíróság helyes döntést hozott a kishantosi cég kontra állam perben?",
+            "expected_answer": true,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Volt-e joga a Kishantosi Vidékfejlesztési Központ Közhasznú Kft.-nek a helyi állami területek használatára a bírósági ítélet szerint?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A Kishantosi Vidékfejlesztési Központ Közhasznú Kft. 2014-ben nyújtott-e be közhasznúsági nyilatkozatot az utolsó nyilatkozat után?",
+            "expected_answer": false,
+            "result": null,
+            "status": "Uncertain"
+        },
+        {
+            "question": "Demonstrált-e a Bánya-, Energia-, és Ipari Dolgozók Szakszervezete (BDSZ) 2014. január 29-én Budapesten a bányásznyugdíjak módosítása miatt?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A Bánya-, Energia-, és Ipari Dolgozók Szakszervezete (BDSZ) 2013-ban is demonstrált Budapesten a bányásznyugdíjak módosítása miatt?",
+            "expected_answer": true,
+            "result": true,
+            "status": "Correct"
+        },
+        {
+            "question": "A demonstráció a bányásznyugdíjak növelése érdekében történt 2014. január 29-én?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        },
+        {
+            "question": "A BDSZ a Külügyminisztérium előtt tartotta a demonstrációt 2014. január 29-én?",
+            "expected_answer": false,
+            "result": false,
+            "status": "Correct"
+        }
+    ],
+    "accuracy": 85.62300319488818
+}

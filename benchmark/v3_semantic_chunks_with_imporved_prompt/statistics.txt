@@ -1,0 +1,8 @@
+Benchmark Statistics of v3_semantic_chunks_with_imporved_prompt
+==================
+Total Questions: 424
+Correct: 268
+Incorrect: 45
+Uncertain: 111
+Accuracy (excluding uncertain): 85.62%
+Uncertainty Rate: 26.18%

@@ -1,0 +1,8 @@
+Benchmark Statistics of v4_semantic_chunks_with_reranking
+==================
+Total Questions: 424
+Correct: 275
+Incorrect: 46
+Uncertain: 103
+Accuracy (excluding uncertain): 85.67%
+Uncertainty Rate: 24.29%

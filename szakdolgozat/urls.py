@@ -38,7 +38,7 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('unscraped-links/', views.get_unscraped_links, name='unscraped_links'),
-    path('api/rag/query/', views.query_rag, name='query_rag'),
+    #path('api/rag/query/', views.query_rag, name='query_rag'),
     
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
