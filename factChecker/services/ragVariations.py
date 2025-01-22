@@ -228,7 +228,7 @@ class RagVariations:
         articles = []
         
         for result in reranked.results:
-            article, _ article_results= [result.index]
+            article, _ = article_results[result.index]
             if result.relevance_score < threshold:
                 continue
             context += f"\nCím: {article.title}\nBevezető: {article.lead}\nTartalom: {article.text}\n"
