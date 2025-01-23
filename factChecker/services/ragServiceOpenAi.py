@@ -78,7 +78,7 @@ class RAGServiceOpenAI:
             error_msg = f"Error generating response: {str(e)}"
             raise RuntimeError(error_msg)
 
-    def query(self, user_query: str, threshold=0.6) -> dict:
+    def query(self, user_query: str, threshold=0.5) -> dict:
         """Main RAG pipeline using OpenAI embeddings"""
         try:
             improved_prompt = self.improve_user_prompt(user_query)

@@ -1,0 +1,8 @@
+Benchmark Statistics of v5_semantic_chunks_with_reranking_all_chunks
+==================
+Total Questions: 424
+Correct: 313
+Incorrect: 37
+Uncertain: 74
+Accuracy (excluding uncertain): 89.43%
+Uncertainty Rate: 17.45%

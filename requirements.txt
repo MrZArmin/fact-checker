@@ -8,7 +8,7 @@ django-environ==0.11.2
 python-dotenv==1.0.1
 selenium==4.25.0
 pgvector
-torch
+torch #torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 numpy
 transformers
 llama-index-core>=0.11.13.post1
