@@ -145,13 +145,12 @@ class Command(BaseCommand):
             '--rag-variation',
             type=str,
             choices=['v1', 'v2', 'v3', 'v4', 'v5'],
-            help='RAG variation to use (v1-v5). If not specified, uses default RAG service.'
+            help='RAG variation to use. If not specified, uses default RAG service.'
         )
 
     def handle(self, *args, **options):
         try:
             # Setup output directory
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             base_folder = os.path.join('benchmark', options["benchmark_name"])
             os.makedirs(base_folder, exist_ok=True)
             
