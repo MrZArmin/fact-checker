@@ -11,6 +11,7 @@ pgvector
 torch
 numpy
 transformers
+llama-index
 llama-index-core>=0.11.13.post1
 llama-index-embeddings-huggingface
 llama-index-readers-database
