@@ -3,26 +3,28 @@ from pathlib import Path
 from langchain_community.graphs import Neo4jGraph
 import os
 import re
+import json
 
 class ArticleGraphRetrieverService():
     def __init__(self):
         self.api_key = os.getenv('OPENAI_API_KEY')
         self.client = OpenAI(api_key=self.api_key)
         self.openai_model = "gpt-4o"
-        self.temperature = 0.7
+        self.temperature = 0
         self.prompts_dir = Path(__file__).parent.parent / "prompts"
+        
+        self.graph = Neo4jGraph()
+        self._create_fulltext_index()
 
     def findSimilarNodes(self, user_query="Ki az az Orbán Viktor?"):
         """
         Collects the neighborhood of entities mentioned
         in the question
         """
-        graph = Neo4jGraph()
         result = ""
         entities = self._getEntities(user_query)
-        return
-        for entity in entities.names:
-            response = graph.query(
+        for entity in entities:
+            response = self.graph.query(
                 """CALL db.index.fulltext.queryNodes('entity', $query, {limit:2})
                 YIELD node,score
                 CALL {
@@ -43,7 +45,6 @@ class ArticleGraphRetrieverService():
     # Ez nem mukodik, lehet spacyvel kéne, a dátumokra meg kitalálni valamit
     def _getEntities(self, user_query, systemPromptTxt="get_entities_prompt.txt"):
         """Identifying information about entities."""
-
         try:
             messages = [
                 {
@@ -63,13 +64,22 @@ class ArticleGraphRetrieverService():
             }
 
             chat_completion = self.client.chat.completions.create(**completion_params)
-            print(chat_completion.choices[0].message.content)
-            return chat_completion.choices[0].message.content
+            
+            response = json.loads(chat_completion.choices[0].message.content)
+            return response['response']
 
         except Exception as e:
             error_msg = f"Error generating response: {str(e)}"
             raise RuntimeError(error_msg)
-
+        
+    def _create_fulltext_index(self) -> None:
+        """Create a full-text index for entity nodes if it doesn't exist."""
+        try:
+            self.graph.query(
+                "CREATE FULLTEXT INDEX entity IF NOT EXISTS FOR (e:Entity) ON EACH [e.id]"
+            )
+        except Exception as e:
+            raise RuntimeError(f"Failed to create full-text index: {str(e)}")
 
     def _generate_full_text_query(self, input):
         """

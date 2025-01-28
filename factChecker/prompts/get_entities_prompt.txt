@@ -4,7 +4,7 @@ Identify and list all unique named entities
 
 Be precise and comprehensive
 Avoid duplicate entities
-If no entities found, indicate: 'No entities found'
+If no entities found, return null
 
 Entities:
 Személyek (Persons)
@@ -13,3 +13,9 @@ Egyéb nevesített entitások (Other Named Entities)
 
 For each entity, only provide the name of the entity
 
+Give response like the provided JSON example:
+
+{"response": [All entities without their categories]}
+
+If no articles found:
+{"response": null}
