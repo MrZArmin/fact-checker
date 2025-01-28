@@ -9,7 +9,7 @@ class ArticleGraphRetrieverService():
         self.api_key = os.getenv('OPENAI_API_KEY')
         self.client = OpenAI(api_key=self.api_key)
         self.openai_model = "gpt-4o"
-        self.temperature = 0
+        self.temperature = 0.7
         self.prompts_dir = Path(__file__).parent.parent / "prompts"
 
     def findSimilarNodes(self, user_query="Ki az az Orbán Viktor?"):
@@ -20,6 +20,7 @@ class ArticleGraphRetrieverService():
         graph = Neo4jGraph()
         result = ""
         entities = self._getEntities(user_query)
+        return
         for entity in entities.names:
             response = graph.query(
                 """CALL db.index.fulltext.queryNodes('entity', $query, {limit:2})
@@ -39,7 +40,7 @@ class ArticleGraphRetrieverService():
 
         return result
 
-    #Ez nem mukodik, lehet spacyvel kéne, a dátumokra meg kitalálni valamit
+    # Ez nem mukodik, lehet spacyvel kéne, a dátumokra meg kitalálni valamit
     def _getEntities(self, user_query, systemPromptTxt="get_entities_prompt.txt"):
         """Identifying information about entities."""
 
@@ -62,6 +63,7 @@ class ArticleGraphRetrieverService():
             }
 
             chat_completion = self.client.chat.completions.create(**completion_params)
+            print(chat_completion.choices[0].message.content)
             return chat_completion.choices[0].message.content
 
         except Exception as e:

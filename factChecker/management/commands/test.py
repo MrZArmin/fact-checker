@@ -6,4 +6,4 @@ retriver = ArticleGraphRetrieverService()
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        retriver.findSimilarNodes()
+        retriver.findSimilarNodes(user_query="Ki az az Orbán Viktor?")
