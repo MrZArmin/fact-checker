@@ -49,49 +49,58 @@ def send_message(request, session_id):
     if not message:
         return Response({'code': 400, 'payload': {'error': 'Message is required'}})
 
-    # Generate response using RAGServiceOpenAI
-    try:
-        response = rag_service.query(message)
-    except Exception as e:
-        return Response({'code': 500, 'payload': {'error': str(e)}})
-
-    # Save user message
+    # Save user message to session
     user_message = ChatMessage.objects.create(
         session=session,
         sender='user',
         message=message,
     )
-    # Save bot response
-    new_ai_response = ChatMessage.objects.create(
-        session=session,
-        sender='ai',
-        message=response['response'],
-    )
 
     try:
+        # Generate response using RAGServiceOpenAI
+        response = rag_service.query(message)
+        
+        # Save bot response
+        ai_message = ChatMessage.objects.create(
+            session=session,
+            sender='ai',
+            message=response['response'],
+        )
+
         # Create article relations
         ChatMessageArticle.objects.bulk_create([
             ChatMessageArticle(
-                chat_message=new_ai_response,
+                chat_message=ai_message,
                 article=Article.objects.get(id=source['id']),
                 similarity_score=source['similarity_score']
             ) for source in response['sources']
         ])
+
+        # Update session
+        session.updated_at = ai_message.timestamp
+        session.save()
+
+        return Response({
+            'code': 200,
+            'payload': {
+                'user_message': user_message.to_dict(),
+                'ai_message': ai_message.to_dict(),
+                'session': session.to_dict()
+            }
+        })
+
     except Exception as e:
-        return Response({'code': 500, 'payload': {'error': str(e)}})
-
-    # Update session timestamp
-    session.updated_at = new_ai_response.timestamp
-    session.save()
-
-    return Response({
-        'code': 200,
-        'payload': {
-            'user_message': user_message.to_dict(),
-            'ai_message': new_ai_response.to_dict(),
-            'session': session.to_dict()
-        }
-    })
+        # Update session even if RAG fails
+        session.updated_at = user_message.timestamp
+        session.save()
+        
+        return Response({
+            'code': 500,
+            'payload': {
+                'error': str(e),
+                'user_message': user_message.to_dict()
+            }
+        })
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
