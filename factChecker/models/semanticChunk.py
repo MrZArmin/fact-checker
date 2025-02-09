@@ -8,6 +8,7 @@ class SemanticChunk(models.Model):
     text = models.TextField()
     embedding = VectorField(dimensions=1024, null=True)  # 1024-dimensional vector
     embedding_openai = VectorField(dimensions=1536, null=True)
+    embedding_modernbert = VectorField(dimensions=768, null=True)
 
     def __str__(self):
         return self.text
