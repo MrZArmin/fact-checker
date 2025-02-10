@@ -21,7 +21,7 @@ class Command(BaseCommand):
         super().__init__(*args, **kwargs)
         load_dotenv()
         self.prompts_dir = Path(__file__).parent.parent.parent / "prompts"
-        self.client = OpenAI(api_key="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")
+        self.client = OpenAI(api_key="")
         self.model = "gpt-4"
         self.system_prompt = self._load_prompt("create_questions_prompt.txt")
         self.temperature = 0.7
