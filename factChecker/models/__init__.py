@@ -7,4 +7,5 @@ from .semanticChunk import SemanticChunk
 from .semanticChunkEnhanced import SemanticChunkEnhanced
 from .chat import ChatSession, ChatMessage, ChatMessageArticle
 from .benchmark import Benchmark
+from .graphBenchmark import GraphBenchmark
 
