@@ -6,7 +6,7 @@ class SemanticChunk(models.Model):
     id = models.AutoField(primary_key=True)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     text = models.TextField()
-    embedding = VectorField(dimensions=1024, null=True)  # 1024-dimensional vector
+    embedding = VectorField(dimensions=1024, null=True)
     embedding_openai = VectorField(dimensions=1536, null=True)
     embedding_modernbert = VectorField(dimensions=768, null=True)
 
