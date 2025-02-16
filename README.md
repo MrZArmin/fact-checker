@@ -85,6 +85,8 @@ Javasolt a már meglévő szerveren levő adatbázist használni, így nem kell 
   - Migrációk futtatása
     - `python manage.py makemigrations`
     - `python manage.py migrate`
+  
+Az adatok vizualizációjához és az adatbázis grafikus kezeléséhez a [DBeaver](https://dbeaver.io/download/) alkalmazás ajánlott
 
 6. Neo4j letöltése és beállítása (Opcionális)
 Még kevésbé javasolt, a rendszer felállítása is macerás, feltölteni adatokkal pedig idő- és pénzigényes.
