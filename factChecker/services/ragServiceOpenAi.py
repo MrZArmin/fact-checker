@@ -11,8 +11,10 @@ from pathlib import Path
 from factChecker.models import ChatMessageArticle, Article
 from django.db.models import Case, When
 from factChecker.services.articleRetrieverService import ArticleRetrieverService
+from factChecker.services.articleGraphRetrieverService import ArticleGraphRetrieverService
 import huspacy
 import cohere
+import re
 
 def adapt_numpy_array(numpy_array):
     return AsIs(repr(numpy_array.tolist()))
@@ -30,6 +32,7 @@ class RAGServiceOpenAI:
         self.cohere_api_key = os.getenv('COHERE_API_KEY')
         self.reranker_model = "rerank-multilingual-v3.0" # context: MAX 4096tokens
         self.cohere_client = cohere.Client(self.cohere_api_key)
+        self.graph_retriever_service = ArticleGraphRetrieverService()
 
     def _load_prompt(self, filename: str) -> str:
         """Load prompt from file."""
@@ -95,22 +98,26 @@ class RAGServiceOpenAI:
                 query=improved_prompt,
                 model="openai"
             )
+            
+            # 2. Retrieve knowledge graph data
+            graph_data = self.graph_retriever_service.get_knowledge_graph_data(user_query)
+            if graph_data:
+                if graph_data['main_entity_relations']:
+                    context += f"\nKapcsolódó entitások: {graph_data['main_entity_relations']}\n"
+                if graph_data['main_entity_articles']:
+                    for article in graph_data['main_entity_articles']:
+                        similar_articles.append((article, 2.0))
+                if graph_data['shared_articles']:
+                    for article in graph_data['shared_articles']:
+                        similar_articles.append((article, 2.0))
 
             articles_str = [str(article) for article in similar_articles]
-
-            for index, (article, score) in enumerate(similar_articles):
-                print(f"{index + 1}. Title: {article.title}, Similarity Score: {score}")
-
-            print("\n\n reranked docs:")
 
             reranked_data = self.rerank_documents(user_query, articles_str)
             reranked_docs = []
 
             for index, result in enumerate(reranked_data.results):
                 reranked_docs.append(similar_articles[result.index])
-
-            for index, (article, score) in enumerate(reranked_docs):
-                print(f"{index + 1}. Title: {article.title}, Similarity Score: {score}")
 
             top_similarity = round(float(similar_articles[0][1]), 4)
             if top_similarity < threshold:
@@ -137,6 +144,7 @@ class RAGServiceOpenAI:
                     'sources': []
                 }
 
+            context = self.sanitize_context(context)
             response = self.generate_response(user_query, context)
 
             return {
@@ -222,3 +230,19 @@ class RAGServiceOpenAI:
         except Exception as e:
             error_msg = f"Error generating title: {str(e)}"
             raise RuntimeError(error_msg)
+        
+    def sanitize_context(self, context: str) -> str:
+        """Sanitize context by removing newlines and extra spaces."""
+        
+        context = re.sub(r'[+]{3,}|[-]{3,}', '', context)
+        
+        lines = context.split('\n')
+        non_empty_lines = [line.strip() for line in lines if line.strip()]
+        
+        # Rejoin with single newlines
+        cleaned_context = '\n'.join(non_empty_lines)
+        cleaned_context = re.sub(r' +', ' ', cleaned_context)
+        
+        cleaned_context = cleaned_context.strip()
+    
+        return cleaned_context
