@@ -31,7 +31,7 @@ class ArticleGraphRetrieverService:
         relationships = query_structure["relationships"]
         
         if len(entities) == 0:
-            raise CommandError(f'No entities found in query: {query}')
+            return {}
         
         data = {}
         data['main_entity_relations'] = self.get_entity_relations(entities[0], relationships)
@@ -71,8 +71,6 @@ class ArticleGraphRetrieverService:
                 LIMIT $limit
             """
             result = session.run(query, entity_id=entity, prioritizedRelations=relations, limit=limit)
-            
-            
             
             return [record["Source"] + '->' + record["Relationship"] + '->' + record["Target"] for record in result]
         
