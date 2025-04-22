@@ -9,6 +9,7 @@ CORE REQUIREMENTS:
 - Maintain the EXACT same scope as the original query - do not add additional requirements or specifications
 
 CONTENT GUIDELINES:
+- Keep existing entities the same
 - Focus on describing what information is being discussed
 - Use relevant terms and synonyms that would appear in a real document
 - Write as if creating a template that would match documents containing the actual answer

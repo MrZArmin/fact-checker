@@ -239,3 +239,58 @@ class RagVariations:
 
         response = self.generate_response(user_query, context)
         return {'response': response, 'sources': articles}
+    
+    def query_v6_opeani_reranking_graph(self, user_query: str, threshold=THRESHOLD) -> dict:
+        """Query using OpenAI embeddings with reranking and graph data"""
+        
+        context = ""
+        articles = []
+        # Get articles using article-level embeddings
+        enhanced_user_query = self.rag_service.improve_user_prompt(user_query)
+        
+        similar_articles = self.article_retriever.find_similar_articles(
+            query=enhanced_user_query,
+            model="openai"
+        )
+
+        graph_data = self.graph_retriever_service.get_knowledge_graph_data(user_query)
+        if graph_data:
+            if graph_data['main_entity_relations']:
+                context += f"\nKapcsolódó entitások: {graph_data['main_entity_relations']}\n"
+            if graph_data['main_entity_articles']:
+                for article in graph_data['main_entity_articles']:
+                    similar_articles.append((article, 2.0))
+            if graph_data['shared_articles']:
+                for article in graph_data['shared_articles']:
+                    similar_articles.append((article, 2.0))
+
+        articles_str = [str(article) for article in similar_articles]
+
+        reranked_data = self.rerank_documents(user_query, articles_str)
+        reranked_docs = []
+        
+        for index, result in enumerate(reranked_data.results):
+                reranked_docs.append(similar_articles[result.index])
+
+        for article, similarity_score in reranked_docs:
+            if article:
+                context += f"\nCím: {article.title}\nBevezető: {article.lead}\nTartalom: {article.text}\n"
+
+                articles.append({
+                    'id': article.id,
+                    'similarity_score': round(float(similarity_score), 4)
+                })
+
+        if not context.strip():
+            return {
+                'response': "Találtunk cikkeket, de nem sikerült lekérni a tartalmukat.",
+                'sources': []
+            }
+
+        context = self.sanitize_context(context)
+        response = self.generate_response(user_query, context)
+
+        return {
+            'response': response,
+            'sources': articles
+        }

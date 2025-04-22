@@ -144,7 +144,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--rag-variation',
             type=str,
-            choices=['v1', 'v2', 'v3', 'v4', 'v5'],
+            choices=['v1', 'v2', 'v3', 'v4', 'v5', 'v6'],
             help='RAG variation to use. If not specified, uses default RAG service.'
         )
 
@@ -162,7 +162,8 @@ class Command(BaseCommand):
                     'v2': rag_variations.query_v2_semantic_chunks,
                     'v3': rag_variations.query_v3_semantic_chunks_with_imporved_prompt,
                     'v4': rag_variations.query_v4_with_reranking,
-                    'v5': rag_variations.query_v5_mxbai
+                    'v5': rag_variations.query_v5_mxbai,
+                    'v6': rag_variations.query_v6_opeani_reranking_graph,
                 }
                 query_func = variation_mapping[options['rag_variation']]
                 
