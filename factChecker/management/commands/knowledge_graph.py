@@ -79,7 +79,5 @@ class Command(BaseCommand):
                     self.style.ERROR(f'Error processing article {article_id}: {str(e)}')
                 )
             
-            # Add a small delay between articles if needed
-            # time.sleep(1)
         
         self.stdout.write(self.style.SUCCESS('Finished processing all articles'))

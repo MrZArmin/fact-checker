@@ -8,15 +8,14 @@ from factChecker.models import Article
 import os
 import json
 from concurrent.futures import ThreadPoolExecutor
-from typing import List, Dict
-import numpy as np
+from typing import List
 from tqdm import tqdm
 
 class Command(BaseCommand):
     help = 'Create optimized knowledge graphs from articles'
     PROGRESS_FILE = 'article_graph_progress.json'
-    BATCH_SIZE = 25  # Increased batch size for better throughput
-    MAX_WORKERS = 4 # Increased workers for parallel processing
+    BATCH_SIZE = 25
+    MAX_WORKERS = 4
 
     def __init__(self):
         super().__init__()
@@ -65,7 +64,6 @@ class Command(BaseCommand):
         return self.text_splitter.split_documents(documents)
 
     def process_batch(self, batch: List[Article]):
-        """Process a batch of articles with improved error handling."""
         try:
             # Create optimized document batch
             batch_documents = self.create_document_batch(batch)

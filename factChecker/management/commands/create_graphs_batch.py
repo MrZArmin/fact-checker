@@ -76,7 +76,6 @@ class ArticleGraphCommand(BaseCommand):
         return self.text_splitter.split_documents(documents)
 
     def process_batch(self, batch: List[Article]) -> tuple[List[int], List[int], Optional[str]]:
-        """Process a batch of articles with comprehensive error handling"""
         batch_ids = [article.id for article in batch]
         print(f"\nStarting to process batch {self.current_batch} with articles: {batch_ids}")
 
@@ -115,7 +114,6 @@ class ArticleGraphCommand(BaseCommand):
         return processed_ids, error_ids, error_message
 
     def handle(self, *args, **options):
-        """Main command execution with improved error handling and progress tracking"""
         try:
             processed_ids = self.load_processed_ids()
 

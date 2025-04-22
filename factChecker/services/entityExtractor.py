@@ -7,7 +7,6 @@ import json
 from pathlib import Path
 from openai import OpenAI
 from django.core.management.base import CommandError
-import huspacy
 
 class EntityExtractor:
     def __init__(self):
@@ -47,9 +46,8 @@ class EntityExtractor:
         
     def get_query_structure_nlp(self, question: str) -> Dict[str, Any]:
         doc = self.nlp(question)
-        entities = [ent.text for ent in doc.ents]
+        entities = [ent.lemma_ for ent in doc.ents]
         relationships = []
-        expected_type = None
 
         return {
             "entities": entities,
