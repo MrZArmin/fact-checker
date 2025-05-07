@@ -42,6 +42,7 @@ class EntityExtractor:
             return json.loads(response.choices[0].message.content)
             
         except Exception as e:
+            print(f"Invalid JSON response: {response.choices[0].message.content}")
             raise CommandError(f'Failed to generate query structure: {str(e)}')
         
     def get_query_structure_nlp(self, question: str) -> Dict[str, Any]:

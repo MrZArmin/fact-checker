@@ -9,6 +9,7 @@ from pathlib import Path
 from factChecker.models import Article
 from factChecker.services.articleRetrieverService import ArticleRetrieverService
 from factChecker.services.ragServiceOpenAi import RAGServiceOpenAI
+from factChecker.services.articleGraphRetrieverService import ArticleGraphRetrieverService
 
 class RagVariations:
     
@@ -22,6 +23,7 @@ class RagVariations:
         self.article_retriever = ArticleRetrieverService()
         self.cohere_client = cohere.Client(os.getenv('COHERE_API_KEY'))
         self.rag_service = RAGServiceOpenAI()
+        self.graph_retriever_service = ArticleGraphRetrieverService()
         
     def _load_prompt(self, filename: str) -> str:
         """Load prompt from file."""
@@ -266,7 +268,7 @@ class RagVariations:
 
         articles_str = [str(article) for article in similar_articles]
 
-        reranked_data = self.rerank_documents(user_query, articles_str)
+        reranked_data = self.rag_service.rerank_documents(user_query, articles_str)
         reranked_docs = []
         
         for index, result in enumerate(reranked_data.results):
@@ -281,13 +283,7 @@ class RagVariations:
                     'similarity_score': round(float(similarity_score), 4)
                 })
 
-        if not context.strip():
-            return {
-                'response': "Találtunk cikkeket, de nem sikerült lekérni a tartalmukat.",
-                'sources': []
-            }
-
-        context = self.sanitize_context(context)
+        context = self.rag_service.sanitize_context(context)
         response = self.generate_response(user_query, context)
 
         return {

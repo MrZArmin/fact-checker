@@ -13,7 +13,7 @@ Example:
 Question: "Ki a Demokratikus Koalíció elnöke?"
 {
   "entities": ["Demokratikus Koalíció"],
-  "relationships": ["LEADS", "HAS_PRESIDENT", "PRESIDENT_OF"],
+  "relationships": ["LEADS", "HAS_PRESIDENT", "PRESIDENT_OF"]
 }
 
 For the following question, provide only the JSON structure, no other text:

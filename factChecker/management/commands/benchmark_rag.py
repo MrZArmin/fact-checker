@@ -9,7 +9,7 @@ from django.core.management.base import BaseCommand
 from django.db import connection
 from tqdm import tqdm
 
-from factChecker.models import Benchmark, Article
+from factChecker.models import Benchmark, Article, GraphBenchmark
 from factChecker.services.ragServiceOpenAi import RAGServiceOpenAI
 from factChecker.services.ragVariations import RagVariations
 
@@ -197,6 +197,9 @@ class Command(BaseCommand):
             # Run benchmarks
             self.stdout.write(self.style.SUCCESS("Running benchmarks..."))
             benchmarks = Benchmark.objects.all()
+            
+            if options['rag_variation'] == 'v6':
+                benchmarks = GraphBenchmark.objects.all()
             runner.run_benchmarks(benchmarks)
             
             # Save results with variation info
